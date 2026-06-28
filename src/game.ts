@@ -57,6 +57,7 @@ export class Game {
 
   // skills UI state
   private skillsOpen = false;
+  private selectedSkillIndex = 0;
 
   private running = false;
   private lastTime = 0;
@@ -140,6 +141,9 @@ export class Game {
     // skills toggle
     if (this.input.wasPressed("k")) {
       this.skillsOpen = !this.skillsOpen;
+      if (this.skillsOpen) {
+        this.selectedSkillIndex = 0;
+      }
     }
 
     // while inventory, quest log, shop, or skills is open, suspend movement
@@ -162,13 +166,26 @@ export class Game {
         }
       }
 
-      // skill hotbar assignment in skills UI: 1-4 assigns selected skill
+      // skill navigation and assignment in skills UI
       if (this.skillsOpen) {
+        const skills = this.player.skills.getUnlockedSkills();
+
+        // W/S navigation through unlocked skills
+        if (this.input.wasPressed("w") || this.input.wasPressed("arrowup")) {
+          this.selectedSkillIndex = Math.max(0, this.selectedSkillIndex - 1);
+        }
+        if (this.input.wasPressed("s") || this.input.wasPressed("arrowdown")) {
+          this.selectedSkillIndex = Math.min(skills.length - 1, this.selectedSkillIndex + 1);
+        }
+
+        // Clamp to valid range
+        this.selectedSkillIndex = Math.max(0, Math.min(this.selectedSkillIndex, skills.length - 1));
+
+        // 1-4 assigns selected skill to hotbar slot
         for (let i = 1; i <= 4; i++) {
           if (this.input.wasPressed(String(i))) {
-            const skills = this.player.skills.getUnlockedSkills();
-            if (skills.length > 0) {
-              this.player.skills.setHotbarSlot(i - 1, skills[0].id);
+            if (skills.length > 0 && this.selectedSkillIndex < skills.length) {
+              this.player.skills.setHotbarSlot(i - 1, skills[this.selectedSkillIndex].id);
             }
           }
         }
@@ -642,28 +659,39 @@ export class Game {
     ctx.font = "bold 18px monospace";
     ctx.textAlign = "left";
     ctx.textBaseline = "top";
-    ctx.fillText("Skills (press 1-4 to assign to hotbar)", boxX + 16, boxY + 16);
+    ctx.fillText("Skills (W/S navigate, 1-4 assign to hotbar)", boxX + 16, boxY + 16);
 
-    const skills = this.player.skills.getAllSkills();
+    const allSkills = this.player.skills.getAllSkills();
     let y = boxY + 50;
     ctx.font = "14px monospace";
 
-    for (const skill of skills) {
+    let unlockedIndex = 0;
+    for (const skill of allSkills) {
       if (skill.unlocked) {
-        ctx.fillStyle = "#e8e8e8";
+        const isSelected = unlockedIndex === this.selectedSkillIndex;
+
+        // Highlight selected skill
+        if (isSelected) {
+          ctx.fillStyle = "rgba(242, 204, 143, 0.2)";
+          ctx.fillRect(boxX + 10, y - 2, boxW - 20, 48);
+        }
+
+        ctx.fillStyle = isSelected ? "#f2cc8f" : "#e8e8e8";
         const cd = this.player.skills.getCooldownRemaining(skill.id);
         const cdText = cd > 0 ? ` (${cd.toFixed(1)}s)` : "";
-        ctx.fillText(`${skill.name}${cdText}`, boxX + 16, y);
+        const prefix = isSelected ? "> " : "  ";
+        ctx.fillText(`${prefix}${skill.name}${cdText}`, boxX + 16, y);
         y += 18;
         ctx.fillStyle = "#9aa0a6";
         ctx.font = "12px monospace";
-        ctx.fillText(`  ${skill.description}`, boxX + 20, y);
-        ctx.fillText(`  Cost: ${skill.manaCost} MP | CD: ${skill.cooldown}s`, boxX + 20, y + 14);
+        ctx.fillText(`    ${skill.description}`, boxX + 20, y);
+        ctx.fillText(`    Cost: ${skill.manaCost} MP | CD: ${skill.cooldown}s`, boxX + 20, y + 14);
         ctx.font = "14px monospace";
         y += 32;
+        unlockedIndex++;
       } else {
         ctx.fillStyle = "#666";
-        ctx.fillText(`${skill.name} (Req. Lvl ${skill.requiredLevel})`, boxX + 16, y);
+        ctx.fillText(`  ${skill.name} (Req. Lvl ${skill.requiredLevel})`, boxX + 16, y);
         y += 18;
       }
     }
