@@ -1,4 +1,6 @@
 import { TileMap, type TileMapData } from "./tilemap.ts";
+import { Input } from "./input.ts";
+import { Player } from "./player.ts";
 
 export interface GameOptions {
   width: number;
@@ -16,6 +18,12 @@ export class Game {
   readonly width: number;
   readonly height: number;
   readonly tileMap: TileMap;
+  readonly input: Input;
+  readonly player: Player;
+
+  // camera top-left in pixels, kept centered on the player and clamped to map
+  private camX = 0;
+  private camY = 0;
 
   private running = false;
   private lastTime = 0;
@@ -32,6 +40,11 @@ export class Game {
     this.ctx = ctx;
 
     this.tileMap = new TileMap(opts.map);
+    this.input = new Input();
+
+    // spawn on the first walkable tile near the map's interior
+    this.player = new Player({ tileX: 2, tileY: 1 });
+    this.updateCamera();
   }
 
   start(): void {
@@ -51,17 +64,34 @@ export class Game {
     this.lastTime = now;
     this.update(dt);
     this.render();
+    this.input.endFrame();
     requestAnimationFrame(this.frame);
   };
 
   private update(_dt: number): void {
-    // phases hook simulation here
+    this.player.handleInput(this.input, this.tileMap);
+    this.updateCamera();
+  }
+
+  /** Center the camera on the player, clamped so it never shows past the map edge. */
+  private updateCamera(): void {
+    const ts = this.tileMap.tileSize;
+    const targetX = this.player.tileX * ts + ts / 2 - this.width / 2;
+    const targetY = this.player.tileY * ts + ts / 2 - this.height / 2;
+    const maxX = Math.max(0, this.tileMap.pixelWidth - this.width);
+    const maxY = Math.max(0, this.tileMap.pixelHeight - this.height);
+    this.camX = Math.min(Math.max(0, targetX), maxX);
+    this.camY = Math.min(Math.max(0, targetY), maxY);
   }
 
   private render(): void {
     const { ctx, width, height } = this;
     ctx.fillStyle = "#202830";
     ctx.fillRect(0, 0, width, height);
-    this.tileMap.render(ctx);
+
+    const ox = -this.camX;
+    const oy = -this.camY;
+    this.tileMap.render(ctx, ox, oy);
+    this.player.render(ctx, this.tileMap.tileSize, ox, oy);
   }
 }
