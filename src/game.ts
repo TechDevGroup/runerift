@@ -2,6 +2,7 @@ import { TileMap, type TileMapData } from "./tilemap.ts";
 import { Input } from "./input.ts";
 import { Player } from "./player.ts";
 import { Npc } from "./npc.ts";
+import { Item } from "./item.ts";
 import { StatsPanel } from "./stats.ts";
 
 export interface GameOptions {
@@ -9,6 +10,7 @@ export interface GameOptions {
   height: number;
   map: TileMapData;
   npcs?: Npc[];
+  items?: Item[];
 }
 
 /**
@@ -24,6 +26,7 @@ export class Game {
   readonly input: Input;
   readonly player: Player;
   readonly npcs: Npc[];
+  readonly items: Item[];
   readonly stats: StatsPanel;
 
   // camera top-left in pixels, kept centered on the player and clamped to map
@@ -50,6 +53,7 @@ export class Game {
     this.tileMap = new TileMap(opts.map);
     this.input = new Input();
     this.npcs = opts.npcs ?? [];
+    this.items = opts.items ?? [];
 
     // spawn on the first walkable tile near the map's interior
     this.player = new Player({ tileX: 2, tileY: 1 });
@@ -89,12 +93,24 @@ export class Game {
     }
 
     this.player.handleInput(this.input, this.tileMap);
+    this.collectItems();
 
     if (this.input.wasPressed("e")) {
       this.activeNpc = this.findInteractableNpc();
     }
 
     this.updateCamera();
+  }
+
+  /** Consume any item the player is now standing on, applying its effect. */
+  private collectItems(): void {
+    for (let i = this.items.length - 1; i >= 0; i--) {
+      const item = this.items[i];
+      if (item.tileX === this.player.tileX && item.tileY === this.player.tileY) {
+        item.applyTo(this.player);
+        this.items.splice(i, 1);
+      }
+    }
   }
 
   /** The first NPC adjacent to the player, or null. */
@@ -124,6 +140,7 @@ export class Game {
     const ox = -this.camX;
     const oy = -this.camY;
     this.tileMap.render(ctx, ox, oy);
+    for (const item of this.items) item.render(ctx, this.tileMap.tileSize, ox, oy);
     for (const npc of this.npcs) npc.render(ctx, this.tileMap.tileSize, ox, oy);
     this.player.render(ctx, this.tileMap.tileSize, ox, oy);
 

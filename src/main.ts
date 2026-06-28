@@ -1,5 +1,6 @@
 import { Game } from "./game.ts";
 import { Npc } from "./npc.ts";
+import { Item } from "./item.ts";
 import mapData from "./map.json";
 import type { TileMapData } from "./tilemap.ts";
 
@@ -28,10 +29,18 @@ const npcs = [
   }),
 ];
 
+// pickups scattered on walkable tiles — step onto one to restore a vital
+const items = [
+  new Item({ tileX: 4, tileY: 2, kind: "hp", amount: 10 }),
+  new Item({ tileX: 8, tileY: 6, kind: "mana", amount: 8 }),
+  new Item({ tileX: 11, tileY: 3, kind: "hp", amount: 10 }),
+];
+
 const game = new Game(canvas, {
   width: map.width * map.tileSize,
   height: map.height * map.tileSize,
   map,
   npcs,
+  items,
 });
 game.start();
