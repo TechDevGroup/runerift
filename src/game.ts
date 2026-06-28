@@ -1,6 +1,9 @@
+import { TileMap, type TileMapData } from "./tilemap.ts";
+
 export interface GameOptions {
   width: number;
   height: number;
+  map: TileMapData;
 }
 
 /**
@@ -12,6 +15,7 @@ export class Game {
   readonly ctx: CanvasRenderingContext2D;
   readonly width: number;
   readonly height: number;
+  readonly tileMap: TileMap;
 
   private running = false;
   private lastTime = 0;
@@ -26,6 +30,8 @@ export class Game {
     const ctx = canvas.getContext("2d");
     if (!ctx) throw new Error("2D canvas context unavailable");
     this.ctx = ctx;
+
+    this.tileMap = new TileMap(opts.map);
   }
 
   start(): void {
@@ -56,12 +62,6 @@ export class Game {
     const { ctx, width, height } = this;
     ctx.fillStyle = "#202830";
     ctx.fillRect(0, 0, width, height);
-
-    // scaffold marker — replaced once the tile map lands in phase 2
-    ctx.fillStyle = "#8fbcbb";
-    ctx.font = "16px monospace";
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-    ctx.fillText("runerift — phase 1 scaffold", width / 2, height / 2);
+    this.tileMap.render(ctx);
   }
 }
