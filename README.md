@@ -19,7 +19,14 @@ npm run preview  # serve the production build
 | ------------------ | ----------------------------------------- |
 | `W A S D` / arrows | Move one tile per press                   |
 | `E`                | Talk to an adjacent NPC / close dialogue  |
-| `Esc`              | Close an open dialogue box                |
+| `I`                | Toggle inventory UI                       |
+| `Q`                | Toggle quest log UI                       |
+| `S`                | Toggle shop UI (when adjacent to vendor)  |
+| `K`                | Toggle skills UI                          |
+| `Space`            | Attack adjacent enemies                   |
+| `1 + Click`        | Cast fireball at clicked position         |
+| `1` - `4`          | Use skill from hotbar slot                |
+| `Esc`              | Close open UI overlay                     |
 
 ## Architecture
 
