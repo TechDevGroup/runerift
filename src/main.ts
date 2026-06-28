@@ -37,11 +37,11 @@ const items = [
   new Item({ tileX: 11, tileY: 3, kind: "hp", amount: 10 }),
 ];
 
-// test enemies with varied stats
+// test enemies with varied stats and XP rewards
 const enemies = [
-  new Enemy({ tileX: 7, tileY: 3, name: "Goblin", hp: 12, attack: 4 }),
-  new Enemy({ tileX: 10, tileY: 7, name: "Orc", hp: 20, attack: 6, color: "#c1121f" }),
-  new Enemy({ tileX: 14, tileY: 5, name: "Dark Wizard", hp: 15, attack: 8, color: "#5a189a" }),
+  new Enemy({ tileX: 7, tileY: 3, name: "Goblin", hp: 12, attack: 4, xp: 8 }),
+  new Enemy({ tileX: 10, tileY: 7, name: "Orc", hp: 20, attack: 6, xp: 15, color: "#c1121f" }),
+  new Enemy({ tileX: 14, tileY: 5, name: "Dark Wizard", hp: 15, attack: 8, xp: 20, color: "#5a189a" }),
 ];
 
 const game = new Game(canvas, {

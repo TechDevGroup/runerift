@@ -7,6 +7,7 @@ export interface EnemyOptions {
   hp?: number;
   maxHp?: number;
   attack?: number;
+  xp?: number;
   color?: string;
 }
 
@@ -20,6 +21,7 @@ export class Enemy {
   readonly name: string;
   readonly hp: BarStat;
   readonly attack: number;
+  readonly xp: number;
   readonly color: string;
 
   constructor(opts: EnemyOptions) {
@@ -28,6 +30,7 @@ export class Enemy {
     this.name = opts.name;
     this.hp = { current: opts.hp ?? 12, max: opts.maxHp ?? 12 };
     this.attack = opts.attack ?? 4;
+    this.xp = opts.xp ?? 5;
     this.color = opts.color ?? "#9b5de5";
   }
 

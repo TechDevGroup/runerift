@@ -11,6 +11,8 @@ export interface PlayerOptions {
   mana?: number;
   maxMana?: number;
   attack?: number;
+  level?: number;
+  xp?: number;
 }
 
 /**
@@ -23,7 +25,9 @@ export class Player implements StatsSource {
   readonly color: string;
   readonly hp: BarStat;
   readonly mana: BarStat;
-  readonly attack: number;
+  attack: number;
+  level: number;
+  xp: number;
 
   constructor(opts: PlayerOptions) {
     this.tileX = opts.tileX;
@@ -32,6 +36,8 @@ export class Player implements StatsSource {
     this.hp = { current: opts.hp ?? 30, max: opts.maxHp ?? 30 };
     this.mana = { current: opts.mana ?? 20, max: opts.maxMana ?? 20 };
     this.attack = opts.attack ?? 5;
+    this.level = opts.level ?? 1;
+    this.xp = opts.xp ?? 0;
   }
 
   /** Edge-triggered: one tile per discrete WASD / arrow press. */
@@ -66,6 +72,32 @@ export class Player implements StatsSource {
     this.tileY = tileY;
     this.hp.current = this.hp.max;
     this.mana.current = this.mana.max;
+  }
+
+  gainXp(amount: number): void {
+    this.xp += amount;
+    while (this.xp >= this.xpForNextLevel()) {
+      this.xp -= this.xpForNextLevel();
+      this.levelUp();
+    }
+  }
+
+  private xpForNextLevel(): number {
+    return Math.floor(10 + this.level * 5);
+  }
+
+  private levelUp(): void {
+    this.level++;
+    this.hp.max += 5;
+    this.hp.current = this.hp.max;
+    this.mana.max += 3;
+    this.mana.current = this.mana.max;
+    this.attack += 1;
+  }
+
+  xpProgress(): number {
+    const needed = this.xpForNextLevel();
+    return needed > 0 ? this.xp / needed : 0;
   }
 
   render(ctx: CanvasRenderingContext2D, tileSize: number, offsetX = 0, offsetY = 0): void {

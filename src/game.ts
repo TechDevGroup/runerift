@@ -146,6 +146,7 @@ export class Game {
       if (enemy.isAdjacentTo(this.player.tileX, this.player.tileY)) {
         const fatal = enemy.takeDamage(this.player.attack);
         if (fatal) {
+          this.player.gainXp(enemy.xp);
           this.enemies.splice(i, 1);
         } else {
           this.player.takeDamage(enemy.attack);
