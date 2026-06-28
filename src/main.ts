@@ -83,7 +83,7 @@ const npcs = [
     tileY: 10,
     name: "Sandy the Merchant",
     dialogue:
-      "Fine wares from across the rift! Come back when I've got my stall sorted out. Press B to browse my shop!",
+      "Fine wares from across the rift! Press S to browse my shop.",
     color: "#e9c46a",
     shop: sandyShop,
   }),
@@ -99,6 +99,8 @@ const items = [
 // test enemies with varied stats and XP rewards
 const enemies = [
   new Enemy({ tileX: 7, tileY: 3, name: "Goblin", hp: 12, attack: 4, xp: 8 }),
+  new Enemy({ tileX: 9, tileY: 5, name: "Goblin", hp: 12, attack: 4, xp: 8 }),
+  new Enemy({ tileX: 6, tileY: 8, name: "Goblin", hp: 12, attack: 4, xp: 8 }),
   new Enemy({ tileX: 10, tileY: 7, name: "Orc", hp: 20, attack: 6, xp: 15, color: "#c1121f" }),
   new Enemy({ tileX: 14, tileY: 5, name: "Dark Wizard", hp: 15, attack: 8, xp: 20, color: "#5a189a" }),
 ];
