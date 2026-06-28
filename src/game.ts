@@ -55,6 +55,9 @@ export class Game {
   private shopOpen = false;
   private activeShopNpc: Npc | null = null;
 
+  // skills UI state
+  private skillsOpen = false;
+
   private running = false;
   private lastTime = 0;
 
@@ -134,12 +137,18 @@ export class Game {
       }
     }
 
-    // while inventory, quest log, or shop is open, suspend movement
-    if (this.inventoryOpen || this.questLogOpen || this.shopOpen) {
+    // skills toggle
+    if (this.input.wasPressed("k")) {
+      this.skillsOpen = !this.skillsOpen;
+    }
+
+    // while inventory, quest log, shop, or skills is open, suspend movement
+    if (this.inventoryOpen || this.questLogOpen || this.shopOpen || this.skillsOpen) {
       if (this.input.wasPressed("escape")) {
         this.inventoryOpen = false;
         this.questLogOpen = false;
         this.shopOpen = false;
+        this.skillsOpen = false;
         this.activeShopNpc = null;
       }
 
@@ -153,7 +162,30 @@ export class Game {
         }
       }
 
+      // skill hotbar assignment in skills UI: 1-4 assigns selected skill
+      if (this.skillsOpen) {
+        for (let i = 1; i <= 4; i++) {
+          if (this.input.wasPressed(String(i))) {
+            const skills = this.player.skills.getUnlockedSkills();
+            if (skills.length > 0) {
+              this.player.skills.setHotbarSlot(i - 1, skills[0].id);
+            }
+          }
+        }
+      }
+
       return;
+    }
+
+    // hotbar skill usage outside of UI: 1-4
+    for (let i = 1; i <= 4; i++) {
+      if (this.input.wasPressed(String(i))) {
+        const skill = this.player.skills.getHotbarSkill(i - 1);
+        if (skill) {
+          this.player.skills.useSkill(skill.id, this.player);
+        }
+        break;
+      }
     }
 
     this.player.handleInput(this.input, this.tileMap);
@@ -331,9 +363,11 @@ export class Game {
     if (this.inventoryOpen) this.renderInventory();
     if (this.questLogOpen) this.renderQuestLog();
     if (this.shopOpen && this.activeShopNpc) this.renderShop(this.activeShopNpc);
+    if (this.skillsOpen) this.renderSkills();
 
     // overlay HUD drawn last so it stays on top in fixed screen space
     this.stats.render(ctx);
+    this.renderHotbar();
   }
 
   /** Draw a dialogue box across the bottom of the canvas, over everything. */
@@ -588,5 +622,94 @@ export class Game {
     ctx.font = "11px monospace";
     ctx.textAlign = "right";
     ctx.fillText("[S] close", boxX + boxW - 16, boxY + boxH - 20);
+  }
+
+  private renderSkills(): void {
+    const { ctx, width, height } = this;
+    const margin = 40;
+    const boxW = width - margin * 2;
+    const boxH = height - margin * 2;
+    const boxX = margin;
+    const boxY = margin;
+
+    ctx.fillStyle = "rgba(20, 24, 30, 0.95)";
+    ctx.fillRect(boxX, boxY, boxW, boxH);
+    ctx.strokeStyle = "#f2cc8f";
+    ctx.lineWidth = 2;
+    ctx.strokeRect(boxX, boxY, boxW, boxH);
+
+    ctx.fillStyle = "#f2cc8f";
+    ctx.font = "bold 18px monospace";
+    ctx.textAlign = "left";
+    ctx.textBaseline = "top";
+    ctx.fillText("Skills (press 1-4 to assign to hotbar)", boxX + 16, boxY + 16);
+
+    const skills = this.player.skills.getAllSkills();
+    let y = boxY + 50;
+    ctx.font = "14px monospace";
+
+    for (const skill of skills) {
+      if (skill.unlocked) {
+        ctx.fillStyle = "#e8e8e8";
+        const cd = this.player.skills.getCooldownRemaining(skill.id);
+        const cdText = cd > 0 ? ` (${cd.toFixed(1)}s)` : "";
+        ctx.fillText(`${skill.name}${cdText}`, boxX + 16, y);
+        y += 18;
+        ctx.fillStyle = "#9aa0a6";
+        ctx.font = "12px monospace";
+        ctx.fillText(`  ${skill.description}`, boxX + 20, y);
+        ctx.fillText(`  Cost: ${skill.manaCost} MP | CD: ${skill.cooldown}s`, boxX + 20, y + 14);
+        ctx.font = "14px monospace";
+        y += 32;
+      } else {
+        ctx.fillStyle = "#666";
+        ctx.fillText(`${skill.name} (Req. Lvl ${skill.requiredLevel})`, boxX + 16, y);
+        y += 18;
+      }
+    }
+
+    ctx.fillStyle = "#9aa0a6";
+    ctx.font = "11px monospace";
+    ctx.textAlign = "right";
+    ctx.fillText("[K] close", boxX + boxW - 16, boxY + boxH - 20);
+  }
+
+  private renderHotbar(): void {
+    const { ctx, width, height } = this;
+    const slotW = 50;
+    const slotH = 50;
+    const gap = 8;
+    const totalW = slotW * 4 + gap * 3;
+    const startX = (width - totalW) / 2;
+    const y = height - slotH - 16;
+
+    for (let i = 0; i < 4; i++) {
+      const x = startX + i * (slotW + gap);
+      const skill = this.player.skills.getHotbarSkill(i);
+
+      ctx.fillStyle = "rgba(20, 24, 30, 0.8)";
+      ctx.fillRect(x, y, slotW, slotH);
+      ctx.strokeStyle = skill ? "#f2cc8f" : "#666";
+      ctx.lineWidth = 2;
+      ctx.strokeRect(x, y, slotW, slotH);
+
+      ctx.fillStyle = "#e8e8e8";
+      ctx.font = "10px monospace";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "top";
+      ctx.fillText(`${i + 1}`, x + slotW / 2, y + 4);
+
+      if (skill) {
+        ctx.font = "9px monospace";
+        ctx.fillText(skill.name.substring(0, 8), x + slotW / 2, y + slotH / 2);
+
+        const cd = this.player.skills.getCooldownRemaining(skill.id);
+        if (cd > 0) {
+          ctx.fillStyle = "rgba(0, 0, 0, 0.6)";
+          const h = (cd / skill.cooldown) * slotH;
+          ctx.fillRect(x, y + slotH - h, slotW, h);
+        }
+      }
+    }
   }
 }
