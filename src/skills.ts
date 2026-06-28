@@ -126,8 +126,8 @@ export class SkillManager {
   useSkill(
     skillId: string,
     player: Player,
-    targetX?: number,
-    targetY?: number,
+    _targetX?: number,
+    _targetY?: number,
   ): { success: boolean; affectedEnemies?: Enemy[] } {
     const skill = this.skills.get(skillId);
     if (!skill || !this.canUseSkill(skillId, player.mana.current)) {

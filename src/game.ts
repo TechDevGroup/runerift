@@ -176,6 +176,8 @@ export class Game {
       enemy.update(dt, this.player.tileX, this.player.tileY, (x, y) => this.tileMap.isSolid(x, y));
     }
 
+    this.player.skills.update(dt);
+
     this.spells.update(dt, this.enemies, (enemy, damage) => {
       const fatal = enemy.takeDamage(damage);
       if (fatal) {

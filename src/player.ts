@@ -3,6 +3,7 @@ import type { Input } from "./input.ts";
 import type { BarStat, StatsSource } from "./stats.ts";
 import { Inventory } from "./inventory.ts";
 import { QuestLog } from "./quest.ts";
+import { SkillManager } from "./skills.ts";
 
 export interface PlayerOptions {
   tileX: number;
@@ -34,6 +35,7 @@ export class Player implements StatsSource {
   gold: number;
   readonly inventory: Inventory;
   readonly questLog: QuestLog;
+  readonly skills: SkillManager;
 
   constructor(opts: PlayerOptions) {
     this.tileX = opts.tileX;
@@ -47,6 +49,7 @@ export class Player implements StatsSource {
     this.gold = opts.gold ?? 50;
     this.inventory = new Inventory();
     this.questLog = new QuestLog();
+    this.skills = new SkillManager();
   }
 
   /** Edge-triggered: one tile per discrete WASD / arrow press. */
@@ -108,6 +111,7 @@ export class Player implements StatsSource {
     this.mana.max += 3;
     this.mana.current = this.mana.max;
     this.attack += 1;
+    this.skills.checkLevelUnlocks(this.level);
   }
 
   xpProgress(): number {
