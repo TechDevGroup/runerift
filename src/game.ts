@@ -121,6 +121,10 @@ export class Game {
       this.castSpell("fireball", click.x, click.y);
     }
 
+    for (const enemy of this.enemies) {
+      enemy.update(dt, this.player.tileX, this.player.tileY, (x, y) => this.tileMap.isSolid(x, y));
+    }
+
     this.spells.update(dt, this.enemies, (enemy, damage) => {
       const fatal = enemy.takeDamage(damage);
       if (fatal) {

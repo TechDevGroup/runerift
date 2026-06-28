@@ -9,6 +9,8 @@ export interface EnemyOptions {
   attack?: number;
   xp?: number;
   color?: string;
+  aggroRange?: number;
+  speed?: number;
 }
 
 /**
@@ -23,6 +25,9 @@ export class Enemy {
   readonly attack: number;
   readonly xp: number;
   readonly color: string;
+  readonly aggroRange: number;
+  readonly speed: number;
+  private moveTimer = 0;
 
   constructor(opts: EnemyOptions) {
     this.tileX = opts.tileX;
@@ -32,6 +37,8 @@ export class Enemy {
     this.attack = opts.attack ?? 4;
     this.xp = opts.xp ?? 5;
     this.color = opts.color ?? "#9b5de5";
+    this.aggroRange = opts.aggroRange ?? 5;
+    this.speed = opts.speed ?? 1.0;
   }
 
   /** Chebyshev adjacency — attackable from any of the 8 neighbouring tiles. */
@@ -47,6 +54,47 @@ export class Enemy {
 
   get isDead(): boolean {
     return this.hp.current === 0;
+  }
+
+  update(dt: number, playerX: number, playerY: number, isSolid: (x: number, y: number) => boolean): void {
+    this.moveTimer -= dt;
+    if (this.moveTimer > 0) return;
+
+    const dx = playerX - this.tileX;
+    const dy = playerY - this.tileY;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+
+    if (dist <= this.aggroRange && dist > 1) {
+      this.moveTimer = 1.0 / this.speed;
+      const stepX = Math.sign(dx);
+      const stepY = Math.sign(dy);
+
+      if (Math.abs(dx) > Math.abs(dy)) {
+        const nx = this.tileX + stepX;
+        if (!isSolid(nx, this.tileY)) {
+          this.tileX = nx;
+          return;
+        }
+      } else {
+        const ny = this.tileY + stepY;
+        if (!isSolid(this.tileX, ny)) {
+          this.tileY = ny;
+          return;
+        }
+      }
+
+      if (Math.abs(dx) > Math.abs(dy)) {
+        const ny = this.tileY + stepY;
+        if (!isSolid(this.tileX, ny)) {
+          this.tileY = ny;
+        }
+      } else {
+        const nx = this.tileX + stepX;
+        if (!isSolid(nx, this.tileY)) {
+          this.tileX = nx;
+        }
+      }
+    }
   }
 
   render(ctx: CanvasRenderingContext2D, tileSize: number, offsetX = 0, offsetY = 0): void {
