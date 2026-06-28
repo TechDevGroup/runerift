@@ -51,6 +51,10 @@ export class Game {
   // quest log UI state
   private questLogOpen = false;
 
+  // shop UI state
+  private shopOpen = false;
+  private activeShopNpc: Npc | null = null;
+
   private running = false;
   private lastTime = 0;
 
@@ -121,11 +125,22 @@ export class Game {
       this.questLogOpen = !this.questLogOpen;
     }
 
-    // while inventory or quest log is open, suspend movement
-    if (this.inventoryOpen || this.questLogOpen) {
+    // shop toggle (only if adjacent to a vendor NPC)
+    if (this.input.wasPressed("s")) {
+      const vendor = this.findVendorNpc();
+      if (vendor) {
+        this.shopOpen = !this.shopOpen;
+        this.activeShopNpc = this.shopOpen ? vendor : null;
+      }
+    }
+
+    // while inventory, quest log, or shop is open, suspend movement
+    if (this.inventoryOpen || this.questLogOpen || this.shopOpen) {
       if (this.input.wasPressed("escape")) {
         this.inventoryOpen = false;
         this.questLogOpen = false;
+        this.shopOpen = false;
+        this.activeShopNpc = null;
       }
       return;
     }
@@ -182,6 +197,16 @@ export class Game {
     for (const npc of this.npcs) {
       if (npc.isAdjacentTo(this.player.tileX, this.player.tileY)) {
         this.handleNpcQuest(npc);
+        return npc;
+      }
+    }
+    return null;
+  }
+
+  /** The first vendor NPC adjacent to the player, or null. */
+  private findVendorNpc(): Npc | null {
+    for (const npc of this.npcs) {
+      if (npc.shop && npc.isAdjacentTo(this.player.tileX, this.player.tileY)) {
         return npc;
       }
     }
@@ -277,6 +302,7 @@ export class Game {
     if (this.activeNpc) this.renderDialogue(this.activeNpc);
     if (this.inventoryOpen) this.renderInventory();
     if (this.questLogOpen) this.renderQuestLog();
+    if (this.shopOpen && this.activeShopNpc) this.renderShop(this.activeShopNpc);
 
     // overlay HUD drawn last so it stays on top in fixed screen space
     this.stats.render(ctx);
@@ -470,5 +496,65 @@ export class Game {
     ctx.font = "11px monospace";
     ctx.textAlign = "right";
     ctx.fillText("[Q] close", boxX + boxW - 16, boxY + boxH - 20);
+  }
+
+  private renderShop(npc: Npc): void {
+    if (!npc.shop) return;
+
+    const { ctx, width, height } = this;
+    const margin = 40;
+    const boxW = width - margin * 2;
+    const boxH = height - margin * 2;
+    const boxX = margin;
+    const boxY = margin;
+
+    ctx.fillStyle = "rgba(20, 24, 30, 0.95)";
+    ctx.fillRect(boxX, boxY, boxW, boxH);
+    ctx.strokeStyle = "#f2cc8f";
+    ctx.lineWidth = 2;
+    ctx.strokeRect(boxX, boxY, boxW, boxH);
+
+    ctx.fillStyle = "#f2cc8f";
+    ctx.font = "bold 18px monospace";
+    ctx.textAlign = "left";
+    ctx.textBaseline = "top";
+    ctx.fillText(`${npc.shop.name} - Gold: ${this.player.gold}`, boxX + 16, boxY + 16);
+
+    const shopItems = npc.shop.getItems();
+
+    let y = boxY + 50;
+    ctx.font = "14px monospace";
+    ctx.fillStyle = "#e8e8e8";
+
+    if (shopItems.length === 0) {
+      ctx.fillText("No items for sale", boxX + 16, y);
+    } else {
+      ctx.fillStyle = "#f2cc8f";
+      ctx.fillText("Items for sale:", boxX + 16, y);
+      y += 20;
+      ctx.fillStyle = "#e8e8e8";
+
+      for (const item of shopItems) {
+        const canAfford = this.player.gold >= item.price;
+        ctx.fillStyle = canAfford ? "#e8e8e8" : "#6b6b6b";
+
+        const stock = item.stock !== undefined ? ` (${item.stock} left)` : "";
+        ctx.fillText(`  ${item.name} - ${item.price}g${stock}`, boxX + 16, y);
+
+        if (item.description) {
+          ctx.fillStyle = "#9aa0a6";
+          ctx.font = "12px monospace";
+          ctx.fillText(`    ${item.description}`, boxX + 20, y + 16);
+          ctx.font = "14px monospace";
+          y += 16;
+        }
+        y += 20;
+      }
+    }
+
+    ctx.fillStyle = "#9aa0a6";
+    ctx.font = "11px monospace";
+    ctx.textAlign = "right";
+    ctx.fillText("[S] close", boxX + boxW - 16, boxY + boxH - 20);
   }
 }

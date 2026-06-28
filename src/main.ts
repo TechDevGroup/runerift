@@ -3,6 +3,7 @@ import { Npc } from "./npc.ts";
 import { Item } from "./item.ts";
 import { Enemy } from "./enemy.ts";
 import type { Quest } from "./quest.ts";
+import { Shop, type ShopItem } from "./shop.ts";
 import mapData from "./map.json";
 import type { TileMapData } from "./tilemap.ts";
 
@@ -33,6 +34,39 @@ const goblinQuestData: Quest = {
   status: "available",
 };
 
+// test shop inventory
+const shopItems: ShopItem[] = [
+  {
+    id: "iron_sword",
+    name: "Iron Sword",
+    type: "weapon",
+    description: "A sturdy iron blade",
+    attackBonus: 3,
+    price: 100,
+    stock: 2,
+  },
+  {
+    id: "leather_armor",
+    name: "Leather Armor",
+    type: "armor",
+    description: "Light protection",
+    defenseBonus: 2,
+    price: 80,
+    stock: 3,
+  },
+  {
+    id: "hp_potion",
+    name: "Health Potion",
+    type: "consumable",
+    description: "Restores 20 HP",
+    hpRestore: 20,
+    price: 15,
+    stackable: true,
+  },
+];
+
+const sandyShop = new Shop("Sandy's Wares", shopItems);
+
 // two test NPCs standing on walkable tiles
 const npcs = [
   new Npc({
@@ -49,8 +83,9 @@ const npcs = [
     tileY: 10,
     name: "Sandy the Merchant",
     dialogue:
-      "Fine wares from across the rift! Come back when I've got my stall sorted out.",
+      "Fine wares from across the rift! Come back when I've got my stall sorted out. Press B to browse my shop!",
     color: "#e9c46a",
+    shop: sandyShop,
   }),
 ];
 
