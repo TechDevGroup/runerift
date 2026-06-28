@@ -109,9 +109,20 @@ export class SkillManager {
       if (!skill.unlocked && level >= skill.requiredLevel) {
         skill.unlocked = true;
         newlyUnlocked.push(skill.name);
+        this.autoAssignToHotbar(skill.id);
       }
     }
     return newlyUnlocked;
+  }
+
+  /** Auto-assign a skill to the first empty hotbar slot. */
+  private autoAssignToHotbar(skillId: string): void {
+    for (let i = 0; i < this.hotbar.length; i++) {
+      if (this.hotbar[i] === null) {
+        this.hotbar[i] = skillId;
+        break;
+      }
+    }
   }
 
   canUseSkill(skillId: string, mana: number): boolean {
