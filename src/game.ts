@@ -5,6 +5,7 @@ import { Npc } from "./npc.ts";
 import { Item } from "./item.ts";
 import { Enemy } from "./enemy.ts";
 import { StatsPanel } from "./stats.ts";
+import { SpellSystem, SPELLS } from "./spell.ts";
 
 export interface GameOptions {
   width: number;
@@ -31,6 +32,7 @@ export class Game {
   readonly items: Item[];
   readonly enemies: Enemy[];
   readonly stats: StatsPanel;
+  readonly spells: SpellSystem;
 
   // where the player respawns after being defeated
   private readonly spawnX: number;
@@ -58,10 +60,11 @@ export class Game {
     this.ctx = ctx;
 
     this.tileMap = new TileMap(opts.map);
-    this.input = new Input();
+    this.input = new Input(window, canvas);
     this.npcs = opts.npcs ?? [];
     this.items = opts.items ?? [];
     this.enemies = opts.enemies ?? [];
+    this.spells = new SpellSystem();
 
     // spawn on the first walkable tile near the map's interior
     this.spawnX = 2;
@@ -93,7 +96,7 @@ export class Game {
     requestAnimationFrame(this.frame);
   };
 
-  private update(_dt: number): void {
+  private update(dt: number): void {
     // while a dialogue box is open, E closes it and movement is suspended
     if (this.activeNpc) {
       if (this.input.wasPressed("e") || this.input.wasPressed("escape")) {
@@ -112,6 +115,20 @@ export class Game {
     if (this.input.wasPressed(" ")) {
       this.attackEnemies();
     }
+
+    const click = this.input.getMouseClick();
+    if (click && this.input.wasPressed("1")) {
+      this.castSpell("fireball", click.x, click.y);
+    }
+
+    this.spells.update(dt, this.enemies, (enemy, damage) => {
+      const fatal = enemy.takeDamage(damage);
+      if (fatal) {
+        this.player.gainXp(enemy.xp);
+        const idx = this.enemies.indexOf(enemy);
+        if (idx >= 0) this.enemies.splice(idx, 1);
+      }
+    });
 
     if (this.player.isDead) {
       this.player.respawn(this.spawnX, this.spawnY);
@@ -155,6 +172,19 @@ export class Game {
     }
   }
 
+  /** Cast a spell at the clicked screen position. */
+  private castSpell(spellKey: string, screenX: number, screenY: number): void {
+    const spell = SPELLS[spellKey];
+    if (!spell) return;
+
+    const worldX = screenX + this.camX;
+    const worldY = screenY + this.camY;
+    const tileX = Math.floor(worldX / this.tileMap.tileSize);
+    const tileY = Math.floor(worldY / this.tileMap.tileSize);
+
+    this.spells.cast(spell, this.player, tileX, tileY);
+  }
+
   /** Center the camera on the player, clamped so it never shows past the map edge. */
   private updateCamera(): void {
     const ts = this.tileMap.tileSize;
@@ -177,6 +207,7 @@ export class Game {
     for (const item of this.items) item.render(ctx, this.tileMap.tileSize, ox, oy);
     for (const npc of this.npcs) npc.render(ctx, this.tileMap.tileSize, ox, oy);
     for (const enemy of this.enemies) enemy.render(ctx, this.tileMap.tileSize, ox, oy);
+    this.spells.render(ctx, this.tileMap.tileSize, ox, oy);
     this.player.render(ctx, this.tileMap.tileSize, ox, oy);
 
     if (this.activeNpc) this.renderDialogue(this.activeNpc);
