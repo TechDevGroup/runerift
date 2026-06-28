@@ -1,11 +1,13 @@
 import { TileMap, type TileMapData } from "./tilemap.ts";
 import { Input } from "./input.ts";
 import { Player } from "./player.ts";
+import { Npc } from "./npc.ts";
 
 export interface GameOptions {
   width: number;
   height: number;
   map: TileMapData;
+  npcs?: Npc[];
 }
 
 /**
@@ -20,10 +22,14 @@ export class Game {
   readonly tileMap: TileMap;
   readonly input: Input;
   readonly player: Player;
+  readonly npcs: Npc[];
 
   // camera top-left in pixels, kept centered on the player and clamped to map
   private camX = 0;
   private camY = 0;
+
+  // the NPC whose dialogue is currently open, or null when no box is shown
+  private activeNpc: Npc | null = null;
 
   private running = false;
   private lastTime = 0;
@@ -41,6 +47,7 @@ export class Game {
 
     this.tileMap = new TileMap(opts.map);
     this.input = new Input();
+    this.npcs = opts.npcs ?? [];
 
     // spawn on the first walkable tile near the map's interior
     this.player = new Player({ tileX: 2, tileY: 1 });
@@ -69,8 +76,29 @@ export class Game {
   };
 
   private update(_dt: number): void {
+    // while a dialogue box is open, E closes it and movement is suspended
+    if (this.activeNpc) {
+      if (this.input.wasPressed("e") || this.input.wasPressed("escape")) {
+        this.activeNpc = null;
+      }
+      return;
+    }
+
     this.player.handleInput(this.input, this.tileMap);
+
+    if (this.input.wasPressed("e")) {
+      this.activeNpc = this.findInteractableNpc();
+    }
+
     this.updateCamera();
+  }
+
+  /** The first NPC adjacent to the player, or null. */
+  private findInteractableNpc(): Npc | null {
+    for (const npc of this.npcs) {
+      if (npc.isAdjacentTo(this.player.tileX, this.player.tileY)) return npc;
+    }
+    return null;
   }
 
   /** Center the camera on the player, clamped so it never shows past the map edge. */
@@ -92,6 +120,59 @@ export class Game {
     const ox = -this.camX;
     const oy = -this.camY;
     this.tileMap.render(ctx, ox, oy);
+    for (const npc of this.npcs) npc.render(ctx, this.tileMap.tileSize, ox, oy);
     this.player.render(ctx, this.tileMap.tileSize, ox, oy);
+
+    if (this.activeNpc) this.renderDialogue(this.activeNpc);
+  }
+
+  /** Draw a dialogue box across the bottom of the canvas, over everything. */
+  private renderDialogue(npc: Npc): void {
+    const { ctx, width, height } = this;
+    const margin = 16;
+    const boxH = 96;
+    const boxX = margin;
+    const boxY = height - boxH - margin;
+    const boxW = width - margin * 2;
+
+    ctx.fillStyle = "rgba(20, 24, 30, 0.92)";
+    ctx.fillRect(boxX, boxY, boxW, boxH);
+    ctx.strokeStyle = "#8fbcbb";
+    ctx.lineWidth = 2;
+    ctx.strokeRect(boxX, boxY, boxW, boxH);
+
+    ctx.textAlign = "left";
+    ctx.textBaseline = "top";
+    ctx.fillStyle = "#f2cc8f";
+    ctx.font = "bold 16px monospace";
+    ctx.fillText(npc.name, boxX + 14, boxY + 12);
+
+    ctx.fillStyle = "#e8e8e8";
+    ctx.font = "14px monospace";
+    this.wrapText(npc.dialogue, boxX + 14, boxY + 38, boxW - 28, 18);
+
+    ctx.fillStyle = "#9aa0a6";
+    ctx.font = "11px monospace";
+    ctx.textAlign = "right";
+    ctx.fillText("[E] close", boxX + boxW - 14, boxY + boxH - 20);
+  }
+
+  /** Naive word-wrap for the dialogue body. */
+  private wrapText(text: string, x: number, y: number, maxW: number, lineH: number): void {
+    const { ctx } = this;
+    const words = text.split(/\s+/);
+    let line = "";
+    let cy = y;
+    for (const word of words) {
+      const test = line ? line + " " + word : word;
+      if (ctx.measureText(test).width > maxW && line) {
+        ctx.fillText(line, x, cy);
+        line = word;
+        cy += lineH;
+      } else {
+        line = test;
+      }
+    }
+    if (line) ctx.fillText(line, x, cy);
   }
 }
