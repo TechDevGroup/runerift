@@ -3,6 +3,7 @@ import { Input } from "./input.ts";
 import { Player } from "./player.ts";
 import { Npc } from "./npc.ts";
 import { Item } from "./item.ts";
+import { Enemy } from "./enemy.ts";
 import { StatsPanel } from "./stats.ts";
 
 export interface GameOptions {
@@ -11,6 +12,7 @@ export interface GameOptions {
   map: TileMapData;
   npcs?: Npc[];
   items?: Item[];
+  enemies?: Enemy[];
 }
 
 /**
@@ -27,7 +29,12 @@ export class Game {
   readonly player: Player;
   readonly npcs: Npc[];
   readonly items: Item[];
+  readonly enemies: Enemy[];
   readonly stats: StatsPanel;
+
+  // where the player respawns after being defeated
+  private readonly spawnX: number;
+  private readonly spawnY: number;
 
   // camera top-left in pixels, kept centered on the player and clamped to map
   private camX = 0;
@@ -54,9 +61,12 @@ export class Game {
     this.input = new Input();
     this.npcs = opts.npcs ?? [];
     this.items = opts.items ?? [];
+    this.enemies = opts.enemies ?? [];
 
     // spawn on the first walkable tile near the map's interior
-    this.player = new Player({ tileX: 2, tileY: 1 });
+    this.spawnX = 2;
+    this.spawnY = 1;
+    this.player = new Player({ tileX: this.spawnX, tileY: this.spawnY });
     // stats panel reads the player's live hp/mana each frame
     this.stats = new StatsPanel(this.player);
     this.updateCamera();
@@ -99,6 +109,14 @@ export class Game {
       this.activeNpc = this.findInteractableNpc();
     }
 
+    if (this.input.wasPressed(" ")) {
+      this.attackEnemies();
+    }
+
+    if (this.player.isDead) {
+      this.player.respawn(this.spawnX, this.spawnY);
+    }
+
     this.updateCamera();
   }
 
@@ -119,6 +137,21 @@ export class Game {
       if (npc.isAdjacentTo(this.player.tileX, this.player.tileY)) return npc;
     }
     return null;
+  }
+
+  /** Attack all adjacent enemies; each attacked enemy retaliates. */
+  private attackEnemies(): void {
+    for (let i = this.enemies.length - 1; i >= 0; i--) {
+      const enemy = this.enemies[i];
+      if (enemy.isAdjacentTo(this.player.tileX, this.player.tileY)) {
+        const fatal = enemy.takeDamage(this.player.attack);
+        if (fatal) {
+          this.enemies.splice(i, 1);
+        } else {
+          this.player.takeDamage(enemy.attack);
+        }
+      }
+    }
   }
 
   /** Center the camera on the player, clamped so it never shows past the map edge. */
@@ -142,6 +175,7 @@ export class Game {
     this.tileMap.render(ctx, ox, oy);
     for (const item of this.items) item.render(ctx, this.tileMap.tileSize, ox, oy);
     for (const npc of this.npcs) npc.render(ctx, this.tileMap.tileSize, ox, oy);
+    for (const enemy of this.enemies) enemy.render(ctx, this.tileMap.tileSize, ox, oy);
     this.player.render(ctx, this.tileMap.tileSize, ox, oy);
 
     if (this.activeNpc) this.renderDialogue(this.activeNpc);

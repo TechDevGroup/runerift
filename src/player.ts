@@ -10,6 +10,7 @@ export interface PlayerOptions {
   maxHp?: number;
   mana?: number;
   maxMana?: number;
+  attack?: number;
 }
 
 /**
@@ -22,6 +23,7 @@ export class Player implements StatsSource {
   readonly color: string;
   readonly hp: BarStat;
   readonly mana: BarStat;
+  readonly attack: number;
 
   constructor(opts: PlayerOptions) {
     this.tileX = opts.tileX;
@@ -29,6 +31,7 @@ export class Player implements StatsSource {
     this.color = opts.color ?? "#e07a5f";
     this.hp = { current: opts.hp ?? 30, max: opts.maxHp ?? 30 };
     this.mana = { current: opts.mana ?? 20, max: opts.maxMana ?? 20 };
+    this.attack = opts.attack ?? 5;
   }
 
   /** Edge-triggered: one tile per discrete WASD / arrow press. */
@@ -48,6 +51,21 @@ export class Player implements StatsSource {
       this.tileX = nx;
       this.tileY = ny;
     }
+  }
+
+  takeDamage(amount: number): void {
+    this.hp.current = Math.max(0, this.hp.current - amount);
+  }
+
+  get isDead(): boolean {
+    return this.hp.current === 0;
+  }
+
+  respawn(tileX: number, tileY: number): void {
+    this.tileX = tileX;
+    this.tileY = tileY;
+    this.hp.current = this.hp.max;
+    this.mana.current = this.mana.max;
   }
 
   render(ctx: CanvasRenderingContext2D, tileSize: number, offsetX = 0, offsetY = 0): void {

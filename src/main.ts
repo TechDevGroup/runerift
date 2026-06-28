@@ -1,6 +1,7 @@
 import { Game } from "./game.ts";
 import { Npc } from "./npc.ts";
 import { Item } from "./item.ts";
+import { Enemy } from "./enemy.ts";
 import mapData from "./map.json";
 import type { TileMapData } from "./tilemap.ts";
 
@@ -36,11 +37,19 @@ const items = [
   new Item({ tileX: 11, tileY: 3, kind: "hp", amount: 10 }),
 ];
 
+// test enemies with varied stats
+const enemies = [
+  new Enemy({ tileX: 7, tileY: 3, name: "Goblin", hp: 12, attack: 4 }),
+  new Enemy({ tileX: 10, tileY: 7, name: "Orc", hp: 20, attack: 6, color: "#c1121f" }),
+  new Enemy({ tileX: 14, tileY: 5, name: "Dark Wizard", hp: 15, attack: 8, color: "#5a189a" }),
+];
+
 const game = new Game(canvas, {
   width: map.width * map.tileSize,
   height: map.height * map.tileSize,
   map,
   npcs,
   items,
+  enemies,
 });
 game.start();
