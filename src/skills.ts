@@ -67,7 +67,7 @@ export class SkillManager {
         damage: 0,
         range: 1,
         requiredLevel: 1,
-        unlocked: false,
+        unlocked: true,
       },
       {
         id: "teleport",
