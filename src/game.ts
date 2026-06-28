@@ -48,6 +48,9 @@ export class Game {
   // inventory UI state
   private inventoryOpen = false;
 
+  // quest log UI state
+  private questLogOpen = false;
+
   private running = false;
   private lastTime = 0;
 
@@ -113,10 +116,16 @@ export class Game {
       this.inventoryOpen = !this.inventoryOpen;
     }
 
-    // while inventory is open, suspend movement
-    if (this.inventoryOpen) {
+    // quest log toggle
+    if (this.input.wasPressed("q")) {
+      this.questLogOpen = !this.questLogOpen;
+    }
+
+    // while inventory or quest log is open, suspend movement
+    if (this.inventoryOpen || this.questLogOpen) {
       if (this.input.wasPressed("escape")) {
         this.inventoryOpen = false;
+        this.questLogOpen = false;
       }
       return;
     }
@@ -267,6 +276,7 @@ export class Game {
 
     if (this.activeNpc) this.renderDialogue(this.activeNpc);
     if (this.inventoryOpen) this.renderInventory();
+    if (this.questLogOpen) this.renderQuestLog();
 
     // overlay HUD drawn last so it stays on top in fixed screen space
     this.stats.render(ctx);
@@ -381,5 +391,84 @@ export class Game {
     ctx.font = "11px monospace";
     ctx.textAlign = "right";
     ctx.fillText("[I] close", boxX + boxW - 16, boxY + boxH - 20);
+  }
+
+  private renderQuestLog(): void {
+    const { ctx, width, height } = this;
+    const margin = 40;
+    const boxW = width - margin * 2;
+    const boxH = height - margin * 2;
+    const boxX = margin;
+    const boxY = margin;
+
+    ctx.fillStyle = "rgba(20, 24, 30, 0.95)";
+    ctx.fillRect(boxX, boxY, boxW, boxH);
+    ctx.strokeStyle = "#8fbcbb";
+    ctx.lineWidth = 2;
+    ctx.strokeRect(boxX, boxY, boxW, boxH);
+
+    ctx.fillStyle = "#8fbcbb";
+    ctx.font = "bold 18px monospace";
+    ctx.textAlign = "left";
+    ctx.textBaseline = "top";
+    ctx.fillText("Quest Log", boxX + 16, boxY + 16);
+
+    const active = this.player.questLog.getActive();
+    const completed = this.player.questLog.getCompleted();
+    const available = this.player.questLog.getAvailable();
+
+    let y = boxY + 50;
+    ctx.font = "14px monospace";
+
+    if (active.length === 0 && completed.length === 0 && available.length === 0) {
+      ctx.fillStyle = "#e8e8e8";
+      ctx.fillText("No quests", boxX + 16, y);
+    } else {
+      if (active.length > 0) {
+        ctx.fillStyle = "#f2cc8f";
+        ctx.fillText("Active Quests:", boxX + 16, y);
+        y += 20;
+        ctx.fillStyle = "#e8e8e8";
+        for (const quest of active) {
+          ctx.fillText(`  ${quest.title}`, boxX + 16, y);
+          y += 18;
+          for (const obj of quest.objectives) {
+            const progress = `${obj.currentCount}/${obj.targetCount ?? 1}`;
+            ctx.fillText(`    - ${obj.description} [${progress}]`, boxX + 20, y);
+            y += 16;
+          }
+          y += 6;
+        }
+        y += 10;
+      }
+
+      if (completed.length > 0) {
+        ctx.fillStyle = "#a3be8c";
+        ctx.fillText("Completed:", boxX + 16, y);
+        y += 20;
+        ctx.fillStyle = "#e8e8e8";
+        for (const quest of completed) {
+          ctx.fillText(`  ✓ ${quest.title}`, boxX + 16, y);
+          y += 18;
+        }
+        y += 10;
+      }
+
+      if (available.length > 0) {
+        ctx.fillStyle = "#9aa0a6";
+        ctx.fillText("Available:", boxX + 16, y);
+        y += 20;
+        ctx.fillStyle = "#e8e8e8";
+        for (const quest of available) {
+          ctx.fillText(`  ${quest.title} (talk to ${quest.giver})`, boxX + 16, y);
+          y += 18;
+        }
+      }
+    }
+
+    ctx.fillStyle = "#9aa0a6";
+    ctx.font = "11px monospace";
+    ctx.textAlign = "right";
+    ctx.fillText("[Q] close", boxX + boxW - 16, boxY + boxH - 20);
   }
 }

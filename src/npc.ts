@@ -1,4 +1,5 @@
 import type { Quest } from "./quest.ts";
+import type { Shop } from "./shop.ts";
 
 export interface NpcOptions {
   tileX: number;
@@ -7,6 +8,7 @@ export interface NpcOptions {
   dialogue: string;
   color?: string;
   quest?: Quest;
+  shop?: Shop;
 }
 
 /**
@@ -20,6 +22,7 @@ export class Npc {
   readonly dialogue: string;
   readonly color: string;
   readonly quest?: Quest;
+  readonly shop?: Shop;
 
   constructor(opts: NpcOptions) {
     this.tileX = opts.tileX;
@@ -28,6 +31,7 @@ export class Npc {
     this.dialogue = opts.dialogue;
     this.color = opts.color ?? "#f2cc8f";
     this.quest = opts.quest;
+    this.shop = opts.shop;
   }
 
   /** Chebyshev adjacency (includes the NPC's own tile and diagonals). */

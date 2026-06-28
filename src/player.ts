@@ -15,6 +15,7 @@ export interface PlayerOptions {
   attack?: number;
   level?: number;
   xp?: number;
+  gold?: number;
 }
 
 /**
@@ -30,6 +31,7 @@ export class Player implements StatsSource {
   attack: number;
   level: number;
   xp: number;
+  gold: number;
   readonly inventory: Inventory;
   readonly questLog: QuestLog;
 
@@ -42,6 +44,7 @@ export class Player implements StatsSource {
     this.attack = opts.attack ?? 5;
     this.level = opts.level ?? 1;
     this.xp = opts.xp ?? 0;
+    this.gold = opts.gold ?? 50;
     this.inventory = new Inventory();
     this.questLog = new QuestLog();
   }
