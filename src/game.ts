@@ -171,9 +171,41 @@ export class Game {
   /** The first NPC adjacent to the player, or null. */
   private findInteractableNpc(): Npc | null {
     for (const npc of this.npcs) {
-      if (npc.isAdjacentTo(this.player.tileX, this.player.tileY)) return npc;
+      if (npc.isAdjacentTo(this.player.tileX, this.player.tileY)) {
+        this.handleNpcQuest(npc);
+        return npc;
+      }
     }
     return null;
+  }
+
+  private handleNpcQuest(npc: Npc): void {
+    if (!npc.quest) return;
+
+    const quest = npc.quest;
+    const existing = this.player.questLog.get(quest.id);
+
+    if (!existing) {
+      this.player.questLog.add(quest);
+    } else if (existing.status === "available") {
+      this.player.questLog.accept(quest.id);
+    } else if (this.player.questLog.canTurnIn(quest.id)) {
+      if (quest.rewards.xp) {
+        this.player.gainXp(quest.rewards.xp);
+      }
+      if (quest.rewards.items) {
+        for (const item of quest.rewards.items) {
+          this.player.inventory.add({
+            id: item.id,
+            name: item.name,
+            type: item.type as any,
+            description: "",
+            quantity: item.quantity ?? 1,
+            stackable: true,
+          });
+        }
+      }
+    }
   }
 
   /** Attack all adjacent enemies; each attacked enemy retaliates. */
@@ -184,6 +216,9 @@ export class Game {
         const fatal = enemy.takeDamage(this.player.getTotalAttack());
         if (fatal) {
           this.player.gainXp(enemy.xp);
+          for (const quest of this.player.questLog.getActive()) {
+            this.player.questLog.incrementKillObjective(quest.id, enemy.name);
+          }
           this.enemies.splice(i, 1);
         } else {
           this.player.takeDamage(enemy.attack);

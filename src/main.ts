@@ -2,6 +2,7 @@ import { Game } from "./game.ts";
 import { Npc } from "./npc.ts";
 import { Item } from "./item.ts";
 import { Enemy } from "./enemy.ts";
+import type { Quest } from "./quest.ts";
 import mapData from "./map.json";
 import type { TileMapData } from "./tilemap.ts";
 
@@ -9,6 +10,28 @@ const canvas = document.getElementById("game") as HTMLCanvasElement | null;
 if (!canvas) throw new Error("#game canvas not found");
 
 const map = mapData as TileMapData;
+
+// test quest: kill 3 goblins for Elder Maren
+const goblinQuestData: Quest = {
+  id: "goblin_threat",
+  title: "Goblin Threat",
+  description: "Elder Maren needs help clearing goblins from the area.",
+  giver: "Elder Maren",
+  objectives: [
+    {
+      description: "Defeat 3 Goblins",
+      type: "kill",
+      targetId: "Goblin",
+      targetCount: 3,
+      currentCount: 0,
+    },
+  ],
+  rewards: {
+    xp: 50,
+    items: [{ id: "gold_coin", name: "Gold Coin", type: "consumable", quantity: 10 }],
+  },
+  status: "available",
+};
 
 // two test NPCs standing on walkable tiles
 const npcs = [
@@ -19,6 +42,7 @@ const npcs = [
     dialogue:
       "Welcome to runerift, traveler. The path ahead is yours to walk — press WASD to move, E to speak.",
     color: "#f2cc8f",
+    quest: goblinQuestData,
   }),
   new Npc({
     tileX: 12,

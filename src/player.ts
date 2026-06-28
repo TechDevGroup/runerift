@@ -2,6 +2,7 @@ import type { TileMap } from "./tilemap.ts";
 import type { Input } from "./input.ts";
 import type { BarStat, StatsSource } from "./stats.ts";
 import { Inventory } from "./inventory.ts";
+import { QuestLog } from "./quest.ts";
 
 export interface PlayerOptions {
   tileX: number;
@@ -30,6 +31,7 @@ export class Player implements StatsSource {
   level: number;
   xp: number;
   readonly inventory: Inventory;
+  readonly questLog: QuestLog;
 
   constructor(opts: PlayerOptions) {
     this.tileX = opts.tileX;
@@ -41,6 +43,7 @@ export class Player implements StatsSource {
     this.level = opts.level ?? 1;
     this.xp = opts.xp ?? 0;
     this.inventory = new Inventory();
+    this.questLog = new QuestLog();
   }
 
   /** Edge-triggered: one tile per discrete WASD / arrow press. */
