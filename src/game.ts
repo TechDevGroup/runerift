@@ -45,6 +45,9 @@ export class Game {
   // the NPC whose dialogue is currently open, or null when no box is shown
   private activeNpc: Npc | null = null;
 
+  // inventory UI state
+  private inventoryOpen = false;
+
   private running = false;
   private lastTime = 0;
 
@@ -101,6 +104,19 @@ export class Game {
     if (this.activeNpc) {
       if (this.input.wasPressed("e") || this.input.wasPressed("escape")) {
         this.activeNpc = null;
+      }
+      return;
+    }
+
+    // inventory toggle
+    if (this.input.wasPressed("i")) {
+      this.inventoryOpen = !this.inventoryOpen;
+    }
+
+    // while inventory is open, suspend movement
+    if (this.inventoryOpen) {
+      if (this.input.wasPressed("escape")) {
+        this.inventoryOpen = false;
       }
       return;
     }
@@ -165,7 +181,7 @@ export class Game {
     for (let i = this.enemies.length - 1; i >= 0; i--) {
       const enemy = this.enemies[i];
       if (enemy.isAdjacentTo(this.player.tileX, this.player.tileY)) {
-        const fatal = enemy.takeDamage(this.player.attack);
+        const fatal = enemy.takeDamage(this.player.getTotalAttack());
         if (fatal) {
           this.player.gainXp(enemy.xp);
           this.enemies.splice(i, 1);
@@ -215,6 +231,7 @@ export class Game {
     this.player.render(ctx, this.tileMap.tileSize, ox, oy);
 
     if (this.activeNpc) this.renderDialogue(this.activeNpc);
+    if (this.inventoryOpen) this.renderInventory();
 
     // overlay HUD drawn last so it stays on top in fixed screen space
     this.stats.render(ctx);
@@ -268,5 +285,66 @@ export class Game {
       }
     }
     if (line) ctx.fillText(line, x, cy);
+  }
+
+  private renderInventory(): void {
+    const { ctx, width, height } = this;
+    const margin = 40;
+    const boxW = width - margin * 2;
+    const boxH = height - margin * 2;
+    const boxX = margin;
+    const boxY = margin;
+
+    ctx.fillStyle = "rgba(20, 24, 30, 0.95)";
+    ctx.fillRect(boxX, boxY, boxW, boxH);
+    ctx.strokeStyle = "#f2cc8f";
+    ctx.lineWidth = 2;
+    ctx.strokeRect(boxX, boxY, boxW, boxH);
+
+    ctx.fillStyle = "#f2cc8f";
+    ctx.font = "bold 18px monospace";
+    ctx.textAlign = "left";
+    ctx.textBaseline = "top";
+    ctx.fillText("Inventory", boxX + 16, boxY + 16);
+
+    const items = this.player.inventory.getAll();
+    const equipped = this.player.inventory.getAllEquipped();
+
+    let y = boxY + 50;
+    ctx.font = "14px monospace";
+    ctx.fillStyle = "#e8e8e8";
+
+    if (items.length === 0 && equipped.length === 0) {
+      ctx.fillText("Empty", boxX + 16, y);
+    } else {
+      if (equipped.length > 0) {
+        ctx.fillStyle = "#f2cc8f";
+        ctx.fillText("Equipped:", boxX + 16, y);
+        y += 20;
+        ctx.fillStyle = "#e8e8e8";
+        for (const item of equipped) {
+          ctx.fillText(`  ${item.name} (${item.type})`, boxX + 16, y);
+          y += 18;
+        }
+        y += 10;
+      }
+
+      if (items.length > 0) {
+        ctx.fillStyle = "#f2cc8f";
+        ctx.fillText("Items:", boxX + 16, y);
+        y += 20;
+        ctx.fillStyle = "#e8e8e8";
+        for (const item of items) {
+          const qty = item.stackable && item.quantity ? ` x${item.quantity}` : "";
+          ctx.fillText(`  ${item.name}${qty}`, boxX + 16, y);
+          y += 18;
+        }
+      }
+    }
+
+    ctx.fillStyle = "#9aa0a6";
+    ctx.font = "11px monospace";
+    ctx.textAlign = "right";
+    ctx.fillText("[I] close", boxX + boxW - 16, boxY + boxH - 20);
   }
 }

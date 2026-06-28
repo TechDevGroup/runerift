@@ -1,6 +1,7 @@
 import type { TileMap } from "./tilemap.ts";
 import type { Input } from "./input.ts";
 import type { BarStat, StatsSource } from "./stats.ts";
+import { Inventory } from "./inventory.ts";
 
 export interface PlayerOptions {
   tileX: number;
@@ -28,6 +29,7 @@ export class Player implements StatsSource {
   attack: number;
   level: number;
   xp: number;
+  readonly inventory: Inventory;
 
   constructor(opts: PlayerOptions) {
     this.tileX = opts.tileX;
@@ -38,6 +40,7 @@ export class Player implements StatsSource {
     this.attack = opts.attack ?? 5;
     this.level = opts.level ?? 1;
     this.xp = opts.xp ?? 0;
+    this.inventory = new Inventory();
   }
 
   /** Edge-triggered: one tile per discrete WASD / arrow press. */
@@ -60,7 +63,13 @@ export class Player implements StatsSource {
   }
 
   takeDamage(amount: number): void {
-    this.hp.current = Math.max(0, this.hp.current - amount);
+    const defense = this.inventory.getTotalDefenseBonus();
+    const actualDamage = Math.max(1, amount - defense);
+    this.hp.current = Math.max(0, this.hp.current - actualDamage);
+  }
+
+  getTotalAttack(): number {
+    return this.attack + this.inventory.getTotalAttackBonus();
   }
 
   get isDead(): boolean {
