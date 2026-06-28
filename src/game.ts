@@ -142,6 +142,17 @@ export class Game {
         this.shopOpen = false;
         this.activeShopNpc = null;
       }
+
+      // shop purchases: number keys 1-9 buy items by index
+      if (this.shopOpen && this.activeShopNpc?.shop) {
+        for (let i = 1; i <= 9; i++) {
+          if (this.input.wasPressed(String(i))) {
+            this.handleShopPurchase(this.activeShopNpc.shop, i - 1);
+            break;
+          }
+        }
+      }
+
       return;
     }
 
@@ -211,6 +222,21 @@ export class Game {
       }
     }
     return null;
+  }
+
+  /** Purchase an item from the shop by index. */
+  private handleShopPurchase(shop: any, index: number): void {
+    const items = shop.getItems();
+    if (index >= items.length) return;
+
+    const item = items[index];
+    if (!shop.canBuy(item.id, this.player.gold)) return;
+
+    const purchased = shop.buy(item.id);
+    if (!purchased) return;
+
+    this.player.gold -= item.price;
+    this.player.inventory.add(purchased);
   }
 
   private handleNpcQuest(npc: Npc): void {
@@ -530,25 +556,29 @@ export class Game {
       ctx.fillText("No items for sale", boxX + 16, y);
     } else {
       ctx.fillStyle = "#f2cc8f";
-      ctx.fillText("Items for sale:", boxX + 16, y);
+      ctx.fillText("Items for sale (press number to buy):", boxX + 16, y);
       y += 20;
       ctx.fillStyle = "#e8e8e8";
 
-      for (const item of shopItems) {
+      for (let i = 0; i < shopItems.length; i++) {
+        const item = shopItems[i];
         const canAfford = this.player.gold >= item.price;
         ctx.fillStyle = canAfford ? "#e8e8e8" : "#6b6b6b";
 
         const stock = item.stock !== undefined ? ` (${item.stock} left)` : "";
-        ctx.fillText(`  ${item.name} - ${item.price}g${stock}`, boxX + 16, y);
+        const index = i + 1;
+        ctx.fillText(`  [${index}] ${item.name} - ${item.price}g${stock}`, boxX + 16, y);
 
         if (item.description) {
           ctx.fillStyle = "#9aa0a6";
           ctx.font = "12px monospace";
-          ctx.fillText(`    ${item.description}`, boxX + 20, y + 16);
+          ctx.fillText(`      ${item.description}`, boxX + 20, y + 16);
           ctx.font = "14px monospace";
           y += 16;
         }
         y += 20;
+
+        if (i >= 8) break;
       }
     }
 
