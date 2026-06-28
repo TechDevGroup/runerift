@@ -1,25 +1,34 @@
 import type { TileMap } from "./tilemap.ts";
 import type { Input } from "./input.ts";
+import type { BarStat, StatsSource } from "./stats.ts";
 
 export interface PlayerOptions {
   tileX: number;
   tileY: number;
   color?: string;
+  hp?: number;
+  maxHp?: number;
+  mana?: number;
+  maxMana?: number;
 }
 
 /**
  * Player lives on tile coordinates and steps exactly one tile per keypress.
  * Movement is blocked by solid tiles (TileMap.isSolid).
  */
-export class Player {
+export class Player implements StatsSource {
   tileX: number;
   tileY: number;
   readonly color: string;
+  readonly hp: BarStat;
+  readonly mana: BarStat;
 
   constructor(opts: PlayerOptions) {
     this.tileX = opts.tileX;
     this.tileY = opts.tileY;
     this.color = opts.color ?? "#e07a5f";
+    this.hp = { current: opts.hp ?? 30, max: opts.maxHp ?? 30 };
+    this.mana = { current: opts.mana ?? 20, max: opts.maxMana ?? 20 };
   }
 
   /** Edge-triggered: one tile per discrete WASD / arrow press. */

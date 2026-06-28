@@ -2,6 +2,7 @@ import { TileMap, type TileMapData } from "./tilemap.ts";
 import { Input } from "./input.ts";
 import { Player } from "./player.ts";
 import { Npc } from "./npc.ts";
+import { StatsPanel } from "./stats.ts";
 
 export interface GameOptions {
   width: number;
@@ -23,6 +24,7 @@ export class Game {
   readonly input: Input;
   readonly player: Player;
   readonly npcs: Npc[];
+  readonly stats: StatsPanel;
 
   // camera top-left in pixels, kept centered on the player and clamped to map
   private camX = 0;
@@ -51,6 +53,8 @@ export class Game {
 
     // spawn on the first walkable tile near the map's interior
     this.player = new Player({ tileX: 2, tileY: 1 });
+    // stats panel reads the player's live hp/mana each frame
+    this.stats = new StatsPanel(this.player);
     this.updateCamera();
   }
 
@@ -124,6 +128,9 @@ export class Game {
     this.player.render(ctx, this.tileMap.tileSize, ox, oy);
 
     if (this.activeNpc) this.renderDialogue(this.activeNpc);
+
+    // overlay HUD drawn last so it stays on top in fixed screen space
+    this.stats.render(ctx);
   }
 
   /** Draw a dialogue box across the bottom of the canvas, over everything. */
