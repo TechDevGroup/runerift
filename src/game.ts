@@ -114,6 +114,9 @@ export class Game {
   };
 
   private update(dt: number): void {
+    // Drain prayer points from active prayers
+    this.player.prayer.drain(dt);
+    
     // while a dialogue box is open, E closes it and movement is suspended
     if (this.activeNpc) {
       if (this.input.wasPressed("e") || this.input.wasPressed("escape")) {
@@ -244,6 +247,12 @@ export class Game {
         }
         break;
       }
+    }
+    
+    // P key toggles prayer menu
+    if (this.input.wasPressed("p")) {
+      // Quick toggle Thick Skin prayer for testing
+      this.player.prayer.toggle("THICK_SKIN");
     }
 
     this.player.handleInput(this.input, this.tileMap);

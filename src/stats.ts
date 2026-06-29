@@ -18,6 +18,8 @@ export interface StatsSource {
   attackLevel?: number;
   strengthLevel?: number;
   defenceLevel?: number;
+  prayerLevel?: number;
+  prayerPoints?: BarStat;
   getTotalAttackBonus?: () => number;
   getTotalStrengthBonus?: () => number;
   getTotalDefenceBonus?: () => number;
@@ -57,11 +59,17 @@ export class StatsPanel {
       y += 16;
     }
 
-    // HP and Mana bars
+    // HP, Mana, and Prayer bars
     this.drawBar(ctx, x, y, this.source.hp, "HP", "#e63946", "#5a1f25");
     y += this.barH + this.gap;
     this.drawBar(ctx, x, y, this.source.mana, "MP", "#457bd8", "#1f2c5a");
     y += this.barH + this.gap;
+    
+    // Prayer points bar
+    if (this.source.prayerPoints) {
+      this.drawBar(ctx, x, y, this.source.prayerPoints, "PR", "#f2cc8f", "#5a4a2c");
+      y += this.barH + this.gap;
+    }
 
     // XP bar
     if (this.source.xpProgress) {
@@ -93,7 +101,14 @@ export class StatsPanel {
       ctx.fillText(`Strength:  ${this.source.strengthLevel}${strengthText}`, x, y);
       y += 12;
       ctx.fillText(`Defence:   ${this.source.defenceLevel}${defenceText}`, x, y);
-      y += 14;
+      y += 12;
+      
+      if (this.source.prayerLevel !== undefined) {
+        ctx.fillText(`Prayer:    ${this.source.prayerLevel}`, x, y);
+        y += 12;
+      }
+      
+      y += 4;
 
       // Equipment loadout
       const gear = this.source.getEquippedGear?.();

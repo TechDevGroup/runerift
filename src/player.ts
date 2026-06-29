@@ -6,6 +6,7 @@ import { QuestLog } from "./quest.ts";
 import { SkillManager } from "./skills.ts";
 import { rollMeleeDamage } from "./combat.ts";
 import { getEquipmentStats } from "./data/ItemDefinition.ts";
+import { PrayerManager } from "./prayer.ts";
 
 export interface PlayerOptions {
   tileX: number;
@@ -18,6 +19,8 @@ export interface PlayerOptions {
   attackLevel?: number;
   strengthLevel?: number;
   defenceLevel?: number;
+  prayerLevel?: number;
+  prayerPoints?: number;
   level?: number;
   xp?: number;
   gold?: number;
@@ -42,6 +45,7 @@ export class Player implements StatsSource {
   readonly inventory: Inventory;
   readonly questLog: QuestLog;
   readonly skills: SkillManager;
+  readonly prayer: PrayerManager;
 
   constructor(opts: PlayerOptions) {
     this.tileX = opts.tileX;
@@ -58,6 +62,10 @@ export class Player implements StatsSource {
     this.inventory = new Inventory();
     this.questLog = new QuestLog();
     this.skills = new SkillManager();
+    
+    const prayerLevel = opts.prayerLevel ?? 10; // Start at level 10 to access early prayers
+    const prayerPoints = opts.prayerPoints ?? prayerLevel; // OSRS: prayer points = prayer level
+    this.prayer = new PrayerManager(prayerLevel, prayerPoints);
   }
 
   /** Edge-triggered: one tile per discrete WASD / arrow press. */
@@ -80,6 +88,11 @@ export class Player implements StatsSource {
   }
 
   takeDamage(amount: number): void {
+    // Protect from Melee blocks 100% of melee damage
+    if (this.prayer.isProtectedFromMelee()) {
+      return;
+    }
+    
     this.hp.current = Math.max(0, this.hp.current - amount);
   }
 
@@ -120,7 +133,7 @@ export class Player implements StatsSource {
   }
 
   /**
-   * Calculate total defence bonus from equipped items.
+   * Calculate total defence bonus from equipped items + prayers.
    */
   getTotalDefenceBonus(): number {
     let bonus = 0;
@@ -134,6 +147,13 @@ export class Player implements StatsSource {
         );
       }
     }
+    
+    // Add prayer bonuses (percentage boost)
+    const prayerBoost = this.prayer.getDefenceBonus();
+    if (prayerBoost > 0) {
+      bonus = Math.floor(bonus * (1 + prayerBoost));
+    }
+    
     return bonus;
   }
 
@@ -141,9 +161,23 @@ export class Player implements StatsSource {
    * Roll melee damage against an enemy using OSRS combat formulas.
    */
   rollMeleeDamage(enemyDefenceLevel: number, enemyDefenceBonus: number): number {
+    // Apply prayer bonuses to attack/strength
+    let attackLevel = this.attackLevel;
+    let strengthLevel = this.strengthLevel;
+    
+    const attackPrayerBoost = this.prayer.getAttackBonus();
+    const strengthPrayerBoost = this.prayer.getStrengthBonus();
+    
+    if (attackPrayerBoost > 0) {
+      attackLevel = Math.floor(attackLevel * (1 + attackPrayerBoost));
+    }
+    if (strengthPrayerBoost > 0) {
+      strengthLevel = Math.floor(strengthLevel * (1 + strengthPrayerBoost));
+    }
+    
     return rollMeleeDamage(
-      this.attackLevel,
-      this.strengthLevel,
+      attackLevel,
+      strengthLevel,
       this.getTotalAttackBonus(),
       this.getTotalStrengthBonus(),
       enemyDefenceLevel,
@@ -153,6 +187,14 @@ export class Player implements StatsSource {
 
   get isDead(): boolean {
     return this.hp.current === 0;
+  }
+
+  get prayerLevel(): number {
+    return this.prayer.level;
+  }
+
+  get prayerPoints(): BarStat {
+    return this.prayer.points;
   }
 
   respawn(tileX: number, tileY: number): void {
