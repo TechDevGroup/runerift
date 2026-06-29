@@ -38,6 +38,7 @@ const goblinQuestData: Quest = {
 
 // Shop inventory using real OSRS items from cache
 const shopItems: ShopItem[] = [
+  // Weapons
   {
     itemId: ItemIds.BRONZE_SWORD, // 1277
     price: 26, // Real cache cost
@@ -51,6 +52,28 @@ const shopItems: ShopItem[] = [
   {
     itemId: ItemIds.STEEL_SWORD, // 1281
     price: 325, // Real cache cost
+    stock: 2,
+  },
+  // Armor (body)
+  {
+    itemId: ItemIds.BRONZE_PLATEBODY, // 1117
+    price: 160, // Real cache cost
+    stock: 3,
+  },
+  {
+    itemId: ItemIds.IRON_PLATEBODY, // 1119
+    price: 800, // Real cache cost
+    stock: 2,
+  },
+  // Armor (legs)
+  {
+    itemId: ItemIds.BRONZE_PLATELEGS, // 1153
+    price: 80, // Real cache cost
+    stock: 3,
+  },
+  {
+    itemId: ItemIds.IRON_PLATELEGS, // 1155
+    price: 280, // Real cache cost
     stock: 2,
   },
 ];

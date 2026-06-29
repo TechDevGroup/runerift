@@ -49,6 +49,7 @@ export class Game {
 
   // inventory UI state
   private inventoryOpen = false;
+  private selectedInventoryIndex = 0;
 
   // quest log UI state
   private questLogOpen = false;
@@ -124,6 +125,9 @@ export class Game {
     // inventory toggle
     if (this.input.wasPressed("i")) {
       this.inventoryOpen = !this.inventoryOpen;
+      if (this.inventoryOpen) {
+        this.selectedInventoryIndex = 0;
+      }
     }
 
     // quest log toggle
@@ -156,6 +160,30 @@ export class Game {
         this.shopOpen = false;
         this.skillsOpen = false;
         this.activeShopNpc = null;
+      }
+
+      // inventory navigation and equip
+      if (this.inventoryOpen) {
+        const items = this.player.inventory.getAll();
+
+        // W/S navigation through inventory items
+        if (this.input.wasPressed("w") || this.input.wasPressed("arrowup")) {
+          this.selectedInventoryIndex = Math.max(0, this.selectedInventoryIndex - 1);
+        }
+        if (this.input.wasPressed("s") || this.input.wasPressed("arrowdown")) {
+          this.selectedInventoryIndex = Math.min(items.length - 1, this.selectedInventoryIndex + 1);
+        }
+
+        // Clamp to valid range
+        this.selectedInventoryIndex = Math.max(0, Math.min(this.selectedInventoryIndex, items.length - 1));
+
+        // E key equips selected item
+        if (this.input.wasPressed("e") && items.length > 0) {
+          const selectedSlot = items[this.selectedInventoryIndex];
+          if (selectedSlot?.item.equipable) {
+            this.player.inventory.equip(selectedSlot.item.id);
+          }
+        }
       }
 
       // shop purchases: number keys 1-9 buy items by index
@@ -530,12 +558,18 @@ export class Game {
 
       if (items.length > 0) {
         ctx.fillStyle = "#f2cc8f";
-        ctx.fillText("Items:", boxX + 16, y);
+        ctx.fillText("Items (W/S to select, E to equip):", boxX + 16, y);
         y += 20;
-        ctx.fillStyle = "#e8e8e8";
-        for (const slot of items) {
+        for (let i = 0; i < items.length; i++) {
+          const slot = items[i];
           const qty = slot.item.stackable && slot.quantity ? ` x${slot.quantity}` : "";
-          ctx.fillText(`  ${slot.item.name}${qty}`, boxX + 16, y);
+          const isSelected = i === this.selectedInventoryIndex;
+          
+          // Highlight selected item
+          ctx.fillStyle = isSelected ? "#8ab4f8" : "#e8e8e8";
+          const prefix = isSelected ? "> " : "  ";
+          const equipIndicator = slot.item.equipable ? " [equipable]" : "";
+          ctx.fillText(`${prefix}${slot.item.name}${qty}${equipIndicator}`, boxX + 16, y);
           y += 18;
         }
       }
