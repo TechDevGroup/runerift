@@ -8,6 +8,12 @@ export interface StatsSource {
   mana: BarStat;
   level?: number;
   xpProgress?: () => number;
+  attackLevel?: number;
+  strengthLevel?: number;
+  defenceLevel?: number;
+  getTotalAttackBonus?: () => number;
+  getTotalStrengthBonus?: () => number;
+  getTotalDefenceBonus?: () => number;
 }
 
 /**
@@ -33,6 +39,7 @@ export class StatsPanel {
     const x = this.margin;
     let y = this.margin;
 
+    // Combat stats header
     if (this.source.level !== undefined) {
       ctx.fillStyle = "#f2cc8f";
       ctx.font = "bold 11px monospace";
@@ -42,13 +49,42 @@ export class StatsPanel {
       y += 16;
     }
 
+    // HP and Mana bars
     this.drawBar(ctx, x, y, this.source.hp, "HP", "#e63946", "#5a1f25");
     y += this.barH + this.gap;
     this.drawBar(ctx, x, y, this.source.mana, "MP", "#457bd8", "#1f2c5a");
+    y += this.barH + this.gap;
 
+    // XP bar
     if (this.source.xpProgress) {
-      y += this.barH + this.gap;
       this.drawXpBar(ctx, x, y, this.source.xpProgress());
+      y += this.barH + this.gap + 6;
+    }
+
+    // Combat stats (OSRS style)
+    if (this.source.attackLevel !== undefined) {
+      ctx.fillStyle = "#f2cc8f";
+      ctx.font = "bold 10px monospace";
+      ctx.textAlign = "left";
+      ctx.fillText("Combat Stats", x, y);
+      y += 14;
+
+      ctx.fillStyle = "#e8e8e8";
+      ctx.font = "10px monospace";
+      
+      const attackBonus = this.source.getTotalAttackBonus?.() ?? 0;
+      const strengthBonus = this.source.getTotalStrengthBonus?.() ?? 0;
+      const defenceBonus = this.source.getTotalDefenceBonus?.() ?? 0;
+
+      const attackText = attackBonus > 0 ? ` (+${attackBonus})` : "";
+      const strengthText = strengthBonus > 0 ? ` (+${strengthBonus})` : "";
+      const defenceText = defenceBonus > 0 ? ` (+${defenceBonus})` : "";
+
+      ctx.fillText(`Attack:    ${this.source.attackLevel}${attackText}`, x, y);
+      y += 12;
+      ctx.fillText(`Strength:  ${this.source.strengthLevel}${strengthText}`, x, y);
+      y += 12;
+      ctx.fillText(`Defence:   ${this.source.defenceLevel}${defenceText}`, x, y);
     }
   }
 
