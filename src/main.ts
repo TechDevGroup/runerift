@@ -7,6 +7,7 @@ import { Shop, type ShopItem } from "./shop.ts";
 import mapData from "./map.json";
 import type { TileMapData } from "./tilemap.ts";
 import { getNpc, NpcIds } from "./data/NpcDefinition.ts";
+import { ItemIds } from "./data/ItemDefinition.ts";
 
 const canvas = document.getElementById("game") as HTMLCanvasElement | null;
 if (!canvas) throw new Error("#game canvas not found");
@@ -36,25 +37,21 @@ const goblinQuestData: Quest = {
 };
 
 // Shop inventory using real OSRS items from cache
-// Note: shop system still uses old InventoryItem interface - will be updated in later phase
 const shopItems: ShopItem[] = [
   {
-    id: "1277", // Real bronze sword ID
-    name: "Bronze sword",
-    type: "weapon",
-    description: "A razor sharp sword.",
-    attackBonus: 4, // Real OSRS: +4 slash
+    itemId: ItemIds.BRONZE_SWORD, // 1277
     price: 26, // Real cache cost
     stock: 5,
   },
   {
-    id: "1279", // Real iron sword ID
-    name: "Iron sword",
-    type: "weapon",
-    description: "A razor sharp sword.",
-    attackBonus: 9, // Real OSRS: +9 slash
+    itemId: ItemIds.IRON_SWORD, // 1279
     price: 91, // Real cache cost
     stock: 3,
+  },
+  {
+    itemId: ItemIds.STEEL_SWORD, // 1281
+    price: 325, // Real cache cost
+    stock: 2,
   },
 ];
 

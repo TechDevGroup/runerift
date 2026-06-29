@@ -1,27 +1,23 @@
-export type ItemType = "weapon" | "armor" | "consumable" | "quest";
+import type { ItemDefinition } from "./data/ItemDefinition.ts";
+import { getEquipmentStats } from "./data/ItemDefinition.ts";
 
-export interface InventoryItem {
-  id: string;
-  name: string;
-  type: ItemType;
-  description: string;
-  attackBonus?: number;
-  defenseBonus?: number;
-  hpRestore?: number;
-  manaRestore?: number;
-  stackable?: boolean;
-  quantity?: number;
+/**
+ * Inventory slot: real OSRS item + quantity.
+ */
+export interface InventorySlot {
+  item: ItemDefinition;
+  quantity: number;
 }
 
 export class Inventory {
-  private items: Map<string, InventoryItem> = new Map();
-  private equipped: Map<string, InventoryItem> = new Map();
-  private maxSlots = 20;
+  private items: Map<number, InventorySlot> = new Map();
+  private equipped: Map<string, InventorySlot> = new Map();
+  private maxSlots = 28; // Real OSRS inventory size
 
-  add(item: InventoryItem): boolean {
+  add(item: ItemDefinition, quantity = 1): boolean {
     const existing = this.items.get(item.id);
     if (existing && item.stackable) {
-      existing.quantity = (existing.quantity ?? 1) + (item.quantity ?? 1);
+      existing.quantity += quantity;
       return true;
     }
 
@@ -29,17 +25,17 @@ export class Inventory {
       return false;
     }
 
-    this.items.set(item.id, { ...item, quantity: item.quantity ?? 1 });
+    this.items.set(item.id, { item, quantity });
     return true;
   }
 
-  remove(itemId: string, amount = 1): boolean {
-    const item = this.items.get(itemId);
-    if (!item) return false;
+  remove(itemId: number, amount = 1): boolean {
+    const slot = this.items.get(itemId);
+    if (!slot) return false;
 
-    if (item.stackable && item.quantity) {
-      item.quantity -= amount;
-      if (item.quantity <= 0) {
+    if (slot.item.stackable) {
+      slot.quantity -= amount;
+      if (slot.quantity <= 0) {
         this.items.delete(itemId);
       }
       return true;
@@ -49,68 +45,74 @@ export class Inventory {
     return true;
   }
 
-  has(itemId: string): boolean {
+  has(itemId: number): boolean {
     return this.items.has(itemId);
   }
 
-  get(itemId: string): InventoryItem | undefined {
+  get(itemId: number): InventorySlot | undefined {
     return this.items.get(itemId);
   }
 
-  getAll(): InventoryItem[] {
+  getAll(): InventorySlot[] {
     return Array.from(this.items.values());
   }
 
-  equip(itemId: string): boolean {
-    const item = this.items.get(itemId);
-    if (!item || (item.type !== "weapon" && item.type !== "armor")) {
+  equip(itemId: number): boolean {
+    const slot = this.items.get(itemId);
+    if (!slot || !slot.item.equipable || !slot.item.wearPos) {
       return false;
     }
 
-    const slot = item.type;
-    const currentEquipped = this.equipped.get(slot);
+    const wearPos = slot.item.wearPos;
+    const currentEquipped = this.equipped.get(wearPos);
     if (currentEquipped) {
-      this.items.set(currentEquipped.id, currentEquipped);
+      this.items.set(currentEquipped.item.id, currentEquipped);
     }
 
-    this.equipped.set(slot, item);
+    this.equipped.set(wearPos, slot);
     this.items.delete(itemId);
     return true;
   }
 
-  unequip(slot: string): boolean {
-    const item = this.equipped.get(slot);
-    if (!item) return false;
+  unequip(wearPos: string): boolean {
+    const slot = this.equipped.get(wearPos);
+    if (!slot) return false;
 
     if (this.items.size >= this.maxSlots) {
       return false;
     }
 
-    this.items.set(item.id, item);
-    this.equipped.delete(slot);
+    this.items.set(slot.item.id, slot);
+    this.equipped.delete(wearPos);
     return true;
   }
 
-  getEquipped(slot: string): InventoryItem | undefined {
-    return this.equipped.get(slot);
+  getEquipped(wearPos: string): InventorySlot | undefined {
+    return this.equipped.get(wearPos);
   }
 
-  getAllEquipped(): InventoryItem[] {
+  getAllEquipped(): InventorySlot[] {
     return Array.from(this.equipped.values());
   }
 
   getTotalAttackBonus(): number {
     let bonus = 0;
-    for (const item of this.equipped.values()) {
-      bonus += item.attackBonus ?? 0;
+    for (const slot of this.equipped.values()) {
+      const stats = getEquipmentStats(slot.item.id);
+      if (stats) {
+        bonus += (stats.attackSlash ?? 0) + (stats.attackStab ?? 0) + (stats.attackCrush ?? 0);
+      }
     }
     return bonus;
   }
 
   getTotalDefenseBonus(): number {
     let bonus = 0;
-    for (const item of this.equipped.values()) {
-      bonus += item.defenseBonus ?? 0;
+    for (const slot of this.equipped.values()) {
+      const stats = getEquipmentStats(slot.item.id);
+      if (stats) {
+        bonus += (stats.defenceSlash ?? 0) + (stats.defenceStab ?? 0) + (stats.defenceCrush ?? 0);
+      }
     }
     return bonus;
   }

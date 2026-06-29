@@ -6,6 +6,7 @@ import { Item } from "./item.ts";
 import { Enemy } from "./enemy.ts";
 import { StatsPanel } from "./stats.ts";
 import { SpellSystem, SPELLS } from "./spell.ts";
+import { getEquipmentStats } from "./data/ItemDefinition.ts";
 
 export interface GameOptions {
   width: number;
@@ -280,13 +281,13 @@ export class Game {
     const items = shop.getItems();
     if (index >= items.length) return;
 
-    const item = items[index];
-    if (!shop.canBuy(item.id, this.player.gold)) return;
+    const shopEntry = items[index];
+    if (!shop.canBuy(shopEntry.item.id, this.player.gold)) return;
 
-    const purchased = shop.buy(item.id);
+    const purchased = shop.buy(shopEntry.item.id);
     if (!purchased) return;
 
-    this.player.gold -= item.price;
+    this.player.gold -= shopEntry.price;
     this.player.inventory.add(purchased);
   }
 
@@ -305,15 +306,10 @@ export class Game {
         this.player.gainXp(quest.rewards.xp);
       }
       if (quest.rewards.items) {
-        for (const item of quest.rewards.items) {
-          this.player.inventory.add({
-            id: item.id,
-            name: item.name,
-            type: item.type as any,
-            description: "",
-            quantity: item.quantity ?? 1,
-            stackable: true,
-          });
+        for (const rewardItem of quest.rewards.items) {
+          // TODO: Quest rewards need to use real ItemDefinition IDs
+          // For now, skipping inventory add until quest system is updated
+          console.log(`Quest reward: ${rewardItem.name} x${rewardItem.quantity ?? 1}`);
         }
       }
     }
@@ -472,8 +468,22 @@ export class Game {
         ctx.fillText("Equipped:", boxX + 16, y);
         y += 20;
         ctx.fillStyle = "#e8e8e8";
-        for (const item of equipped) {
-          ctx.fillText(`  ${item.name} (${item.type})`, boxX + 16, y);
+        for (const slot of equipped) {
+          const stats = getEquipmentStats(slot.item.id);
+          let statText = "";
+          if (stats) {
+            const bonuses = [];
+            if (stats.attackSlash) bonuses.push(`+${stats.attackSlash} slash`);
+            if (stats.attackStab) bonuses.push(`+${stats.attackStab} stab`);
+            if (stats.attackCrush) bonuses.push(`+${stats.attackCrush} crush`);
+            if (stats.strengthBonus) bonuses.push(`+${stats.strengthBonus} str`);
+            if (stats.defenceSlash || stats.defenceStab || stats.defenceCrush) {
+              const def = (stats.defenceSlash ?? 0) + (stats.defenceStab ?? 0) + (stats.defenceCrush ?? 0);
+              bonuses.push(`+${def} def`);
+            }
+            if (bonuses.length > 0) statText = ` [${bonuses.join(", ")}]`;
+          }
+          ctx.fillText(`  ${slot.item.name}${statText}`, boxX + 16, y);
           y += 18;
         }
         y += 10;
@@ -484,9 +494,9 @@ export class Game {
         ctx.fillText("Items:", boxX + 16, y);
         y += 20;
         ctx.fillStyle = "#e8e8e8";
-        for (const item of items) {
-          const qty = item.stackable && item.quantity ? ` x${item.quantity}` : "";
-          ctx.fillText(`  ${item.name}${qty}`, boxX + 16, y);
+        for (const slot of items) {
+          const qty = slot.item.stackable && slot.quantity ? ` x${slot.quantity}` : "";
+          ctx.fillText(`  ${slot.item.name}${qty}`, boxX + 16, y);
           y += 18;
         }
       }
@@ -614,18 +624,18 @@ export class Game {
       ctx.fillStyle = "#e8e8e8";
 
       for (let i = 0; i < shopItems.length; i++) {
-        const item = shopItems[i];
-        const canAfford = this.player.gold >= item.price;
+        const shopEntry = shopItems[i];
+        const canAfford = this.player.gold >= shopEntry.price;
         ctx.fillStyle = canAfford ? "#e8e8e8" : "#6b6b6b";
 
-        const stock = item.stock !== undefined ? ` (${item.stock} left)` : "";
+        const stock = shopEntry.stock !== undefined ? ` (${shopEntry.stock} left)` : "";
         const index = i + 1;
-        ctx.fillText(`  [${index}] ${item.name} - ${item.price}g${stock}`, boxX + 16, y);
+        ctx.fillText(`  [${index}] ${shopEntry.item.name} - ${shopEntry.price}g${stock}`, boxX + 16, y);
 
-        if (item.description) {
+        if (shopEntry.item.examine) {
           ctx.fillStyle = "#9aa0a6";
           ctx.font = "12px monospace";
-          ctx.fillText(`      ${item.description}`, boxX + 20, y + 16);
+          ctx.fillText(`      ${shopEntry.item.examine}`, boxX + 20, y + 16);
           ctx.font = "14px monospace";
           y += 16;
         }

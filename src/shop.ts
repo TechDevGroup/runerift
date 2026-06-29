@@ -1,57 +1,70 @@
-import type { InventoryItem } from "./inventory.ts";
+import type { ItemDefinition } from "./data/ItemDefinition.ts";
+import { getItem } from "./data/ItemDefinition.ts";
 
-export interface ShopItem extends InventoryItem {
+export interface ShopItem {
+  itemId: number;
   price: number;
   stock?: number;
 }
 
 export class Shop {
   readonly name: string;
-  private items: Map<string, ShopItem> = new Map();
+  private items: Map<number, ShopItem> = new Map();
 
   constructor(name: string, items: ShopItem[] = []) {
     this.name = name;
     for (const item of items) {
-      this.items.set(item.id, item);
+      this.items.set(item.itemId, item);
     }
   }
 
-  getItems(): ShopItem[] {
-    return Array.from(this.items.values()).filter((item) =>
-      item.stock === undefined || item.stock > 0
-    );
+  getItems(): Array<{ item: ItemDefinition; price: number; stock?: number }> {
+    const result: Array<{ item: ItemDefinition; price: number; stock?: number }> = [];
+    for (const shopItem of this.items.values()) {
+      if (shopItem.stock !== undefined && shopItem.stock <= 0) continue;
+      const itemDef = getItem(shopItem.itemId);
+      if (itemDef) {
+        result.push({
+          item: itemDef,
+          price: shopItem.price,
+          stock: shopItem.stock,
+        });
+      }
+    }
+    return result;
   }
 
-  getItem(itemId: string): ShopItem | undefined {
+  getItem(itemId: number): ShopItem | undefined {
     return this.items.get(itemId);
   }
 
-  canBuy(itemId: string, gold: number): boolean {
-    const item = this.items.get(itemId);
-    if (!item) return false;
-    if (item.stock !== undefined && item.stock <= 0) return false;
-    return gold >= item.price;
+  canBuy(itemId: number, gold: number): boolean {
+    const shopItem = this.items.get(itemId);
+    if (!shopItem) return false;
+    if (shopItem.stock !== undefined && shopItem.stock <= 0) return false;
+    return gold >= shopItem.price;
   }
 
-  buy(itemId: string): ShopItem | null {
-    const item = this.items.get(itemId);
-    if (!item) return null;
-    if (item.stock !== undefined) {
-      if (item.stock <= 0) return null;
-      item.stock--;
+  buy(itemId: number): ItemDefinition | null {
+    const shopItem = this.items.get(itemId);
+    if (!shopItem) return null;
+    if (shopItem.stock !== undefined) {
+      if (shopItem.stock <= 0) return null;
+      shopItem.stock--;
     }
-    return { ...item, quantity: 1 };
+    return getItem(itemId) ?? null;
   }
 
-  sell(item: InventoryItem): number {
-    const basePrice = this.items.get(item.id)?.price ?? 0;
+  sell(itemId: number): number {
+    const shopItem = this.items.get(itemId);
+    const basePrice = shopItem?.price ?? 0;
     return Math.floor(basePrice * 0.5);
   }
 
-  addStock(itemId: string, amount: number): void {
-    const item = this.items.get(itemId);
-    if (item && item.stock !== undefined) {
-      item.stock += amount;
+  addStock(itemId: number, amount: number): void {
+    const shopItem = this.items.get(itemId);
+    if (shopItem && shopItem.stock !== undefined) {
+      shopItem.stock += amount;
     }
   }
 }
