@@ -54,7 +54,7 @@ export class Player implements StatsSource {
     this.defenceLevel = opts.defenceLevel ?? 10;
     this.level = opts.level ?? 1;
     this.xp = opts.xp ?? 0;
-    this.gold = opts.gold ?? 50;
+    this.gold = opts.gold ?? 200; // Increased starting gold for armor purchases
     this.inventory = new Inventory();
     this.questLog = new QuestLog();
     this.skills = new SkillManager();
