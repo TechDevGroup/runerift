@@ -4,6 +4,8 @@ import type { BarStat, StatsSource } from "./stats.ts";
 import { Inventory } from "./inventory.ts";
 import { QuestLog } from "./quest.ts";
 import { SkillManager } from "./skills.ts";
+import { rollMeleeDamage } from "./combat.ts";
+import { getEquipmentStats } from "./data/ItemDefinition.ts";
 
 export interface PlayerOptions {
   tileX: number;
@@ -13,7 +15,9 @@ export interface PlayerOptions {
   maxHp?: number;
   mana?: number;
   maxMana?: number;
-  attack?: number;
+  attackLevel?: number;
+  strengthLevel?: number;
+  defenceLevel?: number;
   level?: number;
   xp?: number;
   gold?: number;
@@ -29,7 +33,9 @@ export class Player implements StatsSource {
   readonly color: string;
   readonly hp: BarStat;
   readonly mana: BarStat;
-  attack: number;
+  attackLevel: number;
+  strengthLevel: number;
+  defenceLevel: number;
   level: number;
   xp: number;
   gold: number;
@@ -43,7 +49,9 @@ export class Player implements StatsSource {
     this.color = opts.color ?? "#e07a5f";
     this.hp = { current: opts.hp ?? 30, max: opts.maxHp ?? 30 };
     this.mana = { current: opts.mana ?? 20, max: opts.maxMana ?? 20 };
-    this.attack = opts.attack ?? 5;
+    this.attackLevel = opts.attackLevel ?? 10;
+    this.strengthLevel = opts.strengthLevel ?? 10;
+    this.defenceLevel = opts.defenceLevel ?? 10;
     this.level = opts.level ?? 1;
     this.xp = opts.xp ?? 0;
     this.gold = opts.gold ?? 50;
@@ -72,13 +80,71 @@ export class Player implements StatsSource {
   }
 
   takeDamage(amount: number): void {
-    const defense = this.inventory.getTotalDefenseBonus();
-    const actualDamage = Math.max(1, amount - defense);
-    this.hp.current = Math.max(0, this.hp.current - actualDamage);
+    this.hp.current = Math.max(0, this.hp.current - amount);
   }
 
-  getTotalAttack(): number {
-    return this.attack + this.inventory.getTotalAttackBonus();
+  /**
+   * Calculate total attack bonus from equipped items.
+   */
+  getTotalAttackBonus(): number {
+    let bonus = 0;
+    for (const slot of this.inventory.getAllEquipped()) {
+      const stats = getEquipmentStats(slot.item.id);
+      if (stats) {
+        bonus += Math.max(
+          stats.attackSlash ?? 0,
+          stats.attackStab ?? 0,
+          stats.attackCrush ?? 0
+        );
+      }
+    }
+    return bonus;
+  }
+
+  /**
+   * Calculate total strength bonus from equipped items.
+   */
+  getTotalStrengthBonus(): number {
+    let bonus = 0;
+    for (const slot of this.inventory.getAllEquipped()) {
+      const stats = getEquipmentStats(slot.item.id);
+      if (stats?.strengthBonus) {
+        bonus += stats.strengthBonus;
+      }
+    }
+    return bonus;
+  }
+
+  /**
+   * Calculate total defence bonus from equipped items.
+   */
+  getTotalDefenceBonus(): number {
+    let bonus = 0;
+    for (const slot of this.inventory.getAllEquipped()) {
+      const stats = getEquipmentStats(slot.item.id);
+      if (stats) {
+        bonus += Math.max(
+          stats.defenceSlash ?? 0,
+          stats.defenceStab ?? 0,
+          stats.defenceCrush ?? 0
+        );
+      }
+    }
+    return bonus;
+  }
+
+  /**
+   * Roll melee damage against an enemy using OSRS combat formulas.
+   */
+  rollMeleeDamage(enemyDefenceLevel: number, enemyDefenceBonus: number): number {
+    return rollMeleeDamage(
+      this.attackLevel,
+      this.strengthLevel,
+      this.getTotalAttackBonus(),
+      this.getTotalStrengthBonus(),
+      enemyDefenceLevel,
+      enemyDefenceBonus
+    );
   }
 
   get isDead(): boolean {
@@ -110,7 +176,9 @@ export class Player implements StatsSource {
     this.hp.current = this.hp.max;
     this.mana.max += 3;
     this.mana.current = this.mana.max;
-    this.attack += 1;
+    this.attackLevel += 1;
+    this.strengthLevel += 1;
+    this.defenceLevel += 1;
     this.skills.checkLevelUnlocks(this.level);
   }
 

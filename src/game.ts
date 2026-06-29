@@ -7,6 +7,7 @@ import { Enemy } from "./enemy.ts";
 import { StatsPanel } from "./stats.ts";
 import { SpellSystem, SPELLS } from "./spell.ts";
 import { getEquipmentStats } from "./data/ItemDefinition.ts";
+import { rollMeleeDamage } from "./combat.ts";
 
 export interface GameOptions {
   width: number;
@@ -315,12 +316,15 @@ export class Game {
     }
   }
 
-  /** Attack all adjacent enemies; each attacked enemy retaliates. */
+  /** Attack all adjacent enemies using OSRS combat formulas; each attacked enemy retaliates. */
   private attackEnemies(): void {
     for (let i = this.enemies.length - 1; i >= 0; i--) {
       const enemy = this.enemies[i];
       if (enemy.isAdjacentTo(this.player.tileX, this.player.tileY)) {
-        const fatal = enemy.takeDamage(this.player.getTotalAttack());
+        // Player attacks enemy with OSRS combat formula
+        const damage = this.player.rollMeleeDamage(enemy.defence, 0);
+        const fatal = enemy.takeDamage(damage);
+        
         if (fatal) {
           this.player.gainXp(enemy.xp);
           for (const quest of this.player.questLog.getActive()) {
@@ -328,7 +332,16 @@ export class Game {
           }
           this.enemies.splice(i, 1);
         } else {
-          this.player.takeDamage(enemy.attack);
+          // Enemy retaliates with OSRS combat formula
+          const enemyDamage = rollMeleeDamage(
+            enemy.attack,
+            enemy.strength,
+            0, // enemies don't have equipment bonuses
+            0,
+            this.player.defenceLevel,
+            this.player.getTotalDefenceBonus()
+          );
+          this.player.takeDamage(enemyDamage);
         }
       }
     }
