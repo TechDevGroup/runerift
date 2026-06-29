@@ -44,4 +44,7 @@ export const NpcIds = {
   GOBLIN_1: 655,
   GOBLIN_2: 656,
   HOBGOBLIN: 132,
+  TOOL_LEPRECHAUN: 0,
+  RUG_MERCHANT: 17,
+  HUDO: 12,
 } as const;

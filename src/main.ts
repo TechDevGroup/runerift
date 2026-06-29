@@ -57,21 +57,25 @@ const shopItems: ShopItem[] = [
 
 const sandyShop = new Shop("Sandy's Wares", shopItems);
 
-// two test NPCs standing on walkable tiles
+// NPCs using real OSRS cache data
 const npcs = [
+  // Quest giver (using Tool Leprechaun as placeholder, real quest NPCs need wider cache)
   new Npc({
     tileX: 5,
     tileY: 4,
-    name: "Elder Maren",
+    npcId: NpcIds.TOOL_LEPRECHAUN, // ID 0
+    name: "Elder Maren", // Override cache name for quest context
     dialogue:
       "Welcome to runerift, traveler. The path ahead is yours to walk — press WASD to move, E to speak.",
     color: "#f2cc8f",
     quest: goblinQuestData,
   }),
+  // Shop keeper (using Rug Merchant as general store)
   new Npc({
     tileX: 12,
     tileY: 10,
-    name: "Sandy the Merchant",
+    npcId: NpcIds.RUG_MERCHANT, // ID 17
+    name: "Sandy the Merchant", // Override cache name
     dialogue:
       "Fine wares from across the rift! Press S to browse my shop.",
     color: "#e9c46a",

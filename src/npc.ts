@@ -1,11 +1,13 @@
 import type { Quest } from "./quest.ts";
 import type { Shop } from "./shop.ts";
+import { getNpc, type NpcDefinition } from "./data/NpcDefinition.ts";
 
 export interface NpcOptions {
   tileX: number;
   tileY: number;
-  name: string;
-  dialogue: string;
+  npcId?: number; // Real OSRS NPC ID from cache
+  name?: string; // Override cache name if needed
+  dialogue?: string;
   color?: string;
   quest?: Quest;
   shop?: Shop;
@@ -14,10 +16,13 @@ export interface NpcOptions {
 /**
  * A non-player character standing on a tile. Holds a name and a line of
  * dialogue surfaced when the player interacts from an adjacent tile.
+ * Can be grounded to real OSRS cache data via npcId.
  */
 export class Npc {
   tileX: number;
   tileY: number;
+  readonly npcId?: number;
+  readonly npcDef?: NpcDefinition;
   readonly name: string;
   readonly dialogue: string;
   readonly color: string;
@@ -27,8 +32,16 @@ export class Npc {
   constructor(opts: NpcOptions) {
     this.tileX = opts.tileX;
     this.tileY = opts.tileY;
-    this.name = opts.name;
-    this.dialogue = opts.dialogue;
+    this.npcId = opts.npcId;
+    
+    // Load from cache if npcId provided
+    if (opts.npcId !== undefined) {
+      this.npcDef = getNpc(opts.npcId);
+    }
+    
+    // Use cache name or override
+    this.name = opts.name ?? this.npcDef?.name ?? "Unknown NPC";
+    this.dialogue = opts.dialogue ?? this.npcDef?.examine ?? "...";
     this.color = opts.color ?? "#f2cc8f";
     this.quest = opts.quest;
     this.shop = opts.shop;
