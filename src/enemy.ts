@@ -1,5 +1,11 @@
 import type { BarStat } from "./stats.ts";
 
+export interface EnemyDrop {
+  itemId: number; // Real OSRS item ID from cache
+  quantity: number;
+  chance: number; // 0-1 probability
+}
+
 export interface EnemyOptions {
   tileX: number;
   tileY: number;
@@ -14,6 +20,7 @@ export interface EnemyOptions {
   color?: string;
   aggroRange?: number;
   speed?: number;
+  drops?: EnemyDrop[]; // OSRS loot table
 }
 
 /**
@@ -33,6 +40,7 @@ export class Enemy {
   readonly color: string;
   readonly aggroRange: number;
   readonly speed: number;
+  readonly drops: EnemyDrop[];
   private moveTimer = 0;
 
   constructor(opts: EnemyOptions) {
@@ -48,6 +56,7 @@ export class Enemy {
     this.color = opts.color ?? "#9b5de5";
     this.aggroRange = opts.aggroRange ?? 5;
     this.speed = opts.speed ?? 1.0;
+    this.drops = opts.drops ?? [];
   }
 
   /** Chebyshev adjacency — attackable from any of the 8 neighbouring tiles. */
@@ -63,6 +72,20 @@ export class Enemy {
 
   get isDead(): boolean {
     return this.hp.current === 0;
+  }
+
+  /**
+   * Roll loot drops based on drop table.
+   * Returns array of {itemId, quantity} for items that dropped.
+   */
+  rollDrops(): Array<{ itemId: number; quantity: number }> {
+    const loot: Array<{ itemId: number; quantity: number }> = [];
+    for (const drop of this.drops) {
+      if (Math.random() < drop.chance) {
+        loot.push({ itemId: drop.itemId, quantity: drop.quantity });
+      }
+    }
+    return loot;
   }
 
   update(dt: number, playerX: number, playerY: number, isSolid: (x: number, y: number) => boolean): void {

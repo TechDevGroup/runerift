@@ -331,6 +331,20 @@ export class Game {
           for (const quest of this.player.questLog.getActive()) {
             this.player.questLog.incrementKillObjective(quest.id, enemy.name);
           }
+          
+          // Spawn loot drops
+          const loot = enemy.rollDrops();
+          for (const drop of loot) {
+            this.items.push(
+              new Item({
+                tileX: enemy.tileX,
+                tileY: enemy.tileY,
+                itemId: drop.itemId,
+                quantity: drop.quantity,
+              })
+            );
+          }
+          
           this.enemies.splice(i, 1);
         } else {
           // Enemy retaliates with OSRS combat formula

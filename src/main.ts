@@ -96,6 +96,7 @@ const hobgoblinDef = getNpc(NpcIds.HOBGOBLIN)!;
 
 const enemies = [
   // Real goblins: combat level 5, hp 12, attack 3, strength 1, defence 4
+  // OSRS drops: 5 coins (100%)
   new Enemy({
     tileX: 7,
     tileY: 3,
@@ -106,6 +107,9 @@ const enemies = [
     strength: goblinDef.stats[1], // strength
     defence: goblinDef.stats[2], // defence
     xp: goblinDef.stats[5] * 4, // OSRS: hitpoints * 4 for melee XP
+    drops: [
+      { itemId: ItemIds.COINS, quantity: 5, chance: 1.0 },
+    ],
   }),
   new Enemy({
     tileX: 9,
@@ -117,6 +121,9 @@ const enemies = [
     strength: goblinDef.stats[1],
     defence: goblinDef.stats[2],
     xp: goblinDef.stats[5] * 4,
+    drops: [
+      { itemId: ItemIds.COINS, quantity: 5, chance: 1.0 },
+    ],
   }),
   new Enemy({
     tileX: 6,
@@ -128,8 +135,12 @@ const enemies = [
     strength: goblinDef.stats[1],
     defence: goblinDef.stats[2],
     xp: goblinDef.stats[5] * 4,
+    drops: [
+      { itemId: ItemIds.COINS, quantity: 5, chance: 1.0 },
+    ],
   }),
   // Real hobgoblin: combat level 54, hp 62, attack 45, strength 43, defence 43
+  // OSRS drops: 15 coins (100%)
   new Enemy({
     tileX: 10,
     tileY: 7,
@@ -141,6 +152,9 @@ const enemies = [
     defence: hobgoblinDef.stats[2],
     xp: hobgoblinDef.stats[5] * 4,
     color: "#c1121f",
+    drops: [
+      { itemId: ItemIds.COINS, quantity: 15, chance: 1.0 },
+    ],
   }),
 ];
 
