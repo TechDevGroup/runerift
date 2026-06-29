@@ -1,6 +1,6 @@
 import type { TileMap } from "./tilemap.ts";
 import type { Input } from "./input.ts";
-import type { BarStat, StatsSource } from "./stats.ts";
+import type { BarStat, StatsSource, EquippedGear } from "./stats.ts";
 import { Inventory } from "./inventory.ts";
 import { QuestLog } from "./quest.ts";
 import { SkillManager } from "./skills.ts";
@@ -189,6 +189,24 @@ export class Player implements StatsSource {
   xpProgress(): number {
     const needed = this.xpForNextLevel();
     return needed > 0 ? this.xp / needed : 0;
+  }
+
+  /**
+   * Get equipped gear summary for stats panel display.
+   */
+  getEquippedGear(): EquippedGear {
+    const gear: EquippedGear = {};
+    const weapon = this.inventory.getEquipped("weapon");
+    const body = this.inventory.getEquipped("body");
+    const legs = this.inventory.getEquipped("legs");
+    const head = this.inventory.getEquipped("head");
+
+    if (weapon) gear.weapon = weapon.item.name;
+    if (body) gear.body = body.item.name;
+    if (legs) gear.legs = legs.item.name;
+    if (head) gear.head = head.item.name;
+
+    return gear;
   }
 
   render(ctx: CanvasRenderingContext2D, tileSize: number, offsetX = 0, offsetY = 0): void {

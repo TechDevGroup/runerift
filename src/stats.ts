@@ -3,6 +3,13 @@ export interface BarStat {
   max: number;
 }
 
+export interface EquippedGear {
+  weapon?: string;
+  body?: string;
+  legs?: string;
+  head?: string;
+}
+
 export interface StatsSource {
   hp: BarStat;
   mana: BarStat;
@@ -14,6 +21,7 @@ export interface StatsSource {
   getTotalAttackBonus?: () => number;
   getTotalStrengthBonus?: () => number;
   getTotalDefenceBonus?: () => number;
+  getEquippedGear?: () => EquippedGear;
 }
 
 /**
@@ -85,6 +93,36 @@ export class StatsPanel {
       ctx.fillText(`Strength:  ${this.source.strengthLevel}${strengthText}`, x, y);
       y += 12;
       ctx.fillText(`Defence:   ${this.source.defenceLevel}${defenceText}`, x, y);
+      y += 14;
+
+      // Equipment loadout
+      const gear = this.source.getEquippedGear?.();
+      if (gear && (gear.weapon || gear.body || gear.legs || gear.head)) {
+        ctx.fillStyle = "#f2cc8f";
+        ctx.font = "bold 10px monospace";
+        ctx.fillText("Equipment", x, y);
+        y += 14;
+
+        ctx.fillStyle = "#9aa0a6";
+        ctx.font = "10px monospace";
+
+        if (gear.weapon) {
+          ctx.fillText(`Weapon: ${gear.weapon}`, x, y);
+          y += 12;
+        }
+        if (gear.body) {
+          ctx.fillText(`Body:   ${gear.body}`, x, y);
+          y += 12;
+        }
+        if (gear.legs) {
+          ctx.fillText(`Legs:   ${gear.legs}`, x, y);
+          y += 12;
+        }
+        if (gear.head) {
+          ctx.fillText(`Head:   ${gear.head}`, x, y);
+          y += 12;
+        }
+      }
     }
   }
 
