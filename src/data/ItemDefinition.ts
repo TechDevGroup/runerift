@@ -99,4 +99,8 @@ export const ItemIds = {
   HAMMER: 2347,
   BRONZE_PICKAXE: 1265,
   BRONZE_AXE: 1351,
+  SHRIMP: 315,
+  TROUT: 333,
+  SALMON: 329,
+  LOBSTER: 379,
 } as const;

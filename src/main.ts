@@ -83,11 +83,11 @@ const npcs = [
   }),
 ];
 
-// pickups scattered on walkable tiles — step onto one to restore a vital
+// Real OSRS item pickups scattered on walkable tiles
 const items = [
-  new Item({ tileX: 4, tileY: 2, kind: "hp", amount: 10 }),
-  new Item({ tileX: 8, tileY: 6, kind: "mana", amount: 8 }),
-  new Item({ tileX: 11, tileY: 3, kind: "hp", amount: 10 }),
+  new Item({ tileX: 4, tileY: 2, itemId: ItemIds.SHRIMP }), // Food
+  new Item({ tileX: 8, tileY: 6, itemId: ItemIds.COINS, quantity: 10 }), // Gold
+  new Item({ tileX: 11, tileY: 3, itemId: ItemIds.TROUT }), // Food
 ];
 
 // Real OSRS enemies from cache data

@@ -245,13 +245,14 @@ export class Game {
     this.updateCamera();
   }
 
-  /** Consume any item the player is now standing on, applying its effect. */
+  /** Pick up any item the player is now standing on, adding it to inventory. */
   private collectItems(): void {
     for (let i = this.items.length - 1; i >= 0; i--) {
       const item = this.items[i];
       if (item.tileX === this.player.tileX && item.tileY === this.player.tileY) {
-        item.applyTo(this.player);
-        this.items.splice(i, 1);
+        if (item.pickUp(this.player.inventory)) {
+          this.items.splice(i, 1);
+        }
       }
     }
   }

@@ -1,38 +1,49 @@
-import type { BarStat, StatsSource } from "./stats.ts";
-
-export type ItemKind = "hp" | "mana";
+import type { ItemDefinition } from "./data/ItemDefinition.ts";
+import { getItem } from "./data/ItemDefinition.ts";
+import type { Inventory } from "./inventory.ts";
 
 export interface ItemOptions {
   tileX: number;
   tileY: number;
-  kind: ItemKind;
-  amount: number;
+  itemId: number; // Real OSRS item ID from cache
+  quantity?: number;
   color?: string;
 }
 
 /**
- * A pickup resting on a tile. When the player steps onto its tile the effect
- * is applied to the matching vital (hp or mana) and the item is consumed.
+ * A pickup resting on a tile. When the player steps onto its tile,
+ * the item is added to their inventory.
+ * Grounded to real OSRS cache data.
  */
 export class Item {
   tileX: number;
   tileY: number;
-  readonly kind: ItemKind;
-  readonly amount: number;
+  readonly itemId: number;
+  readonly itemDef: ItemDefinition | undefined;
+  readonly quantity: number;
   readonly color: string;
 
   constructor(opts: ItemOptions) {
     this.tileX = opts.tileX;
     this.tileY = opts.tileY;
-    this.kind = opts.kind;
-    this.amount = opts.amount;
-    this.color = opts.color ?? (opts.kind === "hp" ? "#e63946" : "#457bd8");
+    this.itemId = opts.itemId;
+    this.itemDef = getItem(opts.itemId);
+    this.quantity = opts.quantity ?? 1;
+    
+    // Default colors: coins gold, food red, equipment gray
+    let defaultColor = "#9aa0a6";
+    if (this.itemDef?.name.toLowerCase().includes("coin")) {
+      defaultColor = "#f4c430";
+    } else if (this.itemDef?.equipable) {
+      defaultColor = "#8ab4f8";
+    }
+    this.color = opts.color ?? defaultColor;
   }
 
-  /** Restore the matching vital on the target, clamped to its max. */
-  applyTo(target: StatsSource): void {
-    const stat: BarStat = this.kind === "hp" ? target.hp : target.mana;
-    stat.current = Math.min(stat.max, stat.current + this.amount);
+  /** Add this item to the player's inventory. Returns true if successful. */
+  pickUp(inventory: Inventory): boolean {
+    if (!this.itemDef) return false;
+    return inventory.add(this.itemDef, this.quantity);
   }
 
   /** Drawn as a small diamond so pickups read differently from round NPCs. */
