@@ -6,6 +6,7 @@ import type { Quest } from "./quest.ts";
 import { Shop, type ShopItem } from "./shop.ts";
 import mapData from "./map.json";
 import type { TileMapData } from "./tilemap.ts";
+import { getNpc, NpcIds } from "./data/NpcDefinition.ts";
 
 const canvas = document.getElementById("game") as HTMLCanvasElement | null;
 if (!canvas) throw new Error("#game canvas not found");
@@ -34,34 +35,26 @@ const goblinQuestData: Quest = {
   status: "available",
 };
 
-// test shop inventory
+// Shop inventory using real OSRS items from cache
+// Note: shop system still uses old InventoryItem interface - will be updated in later phase
 const shopItems: ShopItem[] = [
   {
-    id: "iron_sword",
-    name: "Iron Sword",
+    id: "1277", // Real bronze sword ID
+    name: "Bronze sword",
     type: "weapon",
-    description: "A sturdy iron blade",
-    attackBonus: 3,
-    price: 100,
-    stock: 2,
+    description: "A razor sharp sword.",
+    attackBonus: 4, // Real OSRS: +4 slash
+    price: 26, // Real cache cost
+    stock: 5,
   },
   {
-    id: "leather_armor",
-    name: "Leather Armor",
-    type: "armor",
-    description: "Light protection",
-    defenseBonus: 2,
-    price: 80,
+    id: "1279", // Real iron sword ID
+    name: "Iron sword",
+    type: "weapon",
+    description: "A razor sharp sword.",
+    attackBonus: 9, // Real OSRS: +9 slash
+    price: 91, // Real cache cost
     stock: 3,
-  },
-  {
-    id: "hp_potion",
-    name: "Health Potion",
-    type: "consumable",
-    description: "Restores 20 HP",
-    hpRestore: 20,
-    price: 15,
-    stackable: true,
   },
 ];
 
@@ -96,13 +89,58 @@ const items = [
   new Item({ tileX: 11, tileY: 3, kind: "hp", amount: 10 }),
 ];
 
-// test enemies with varied stats and XP rewards
+// Real OSRS enemies from cache data
+const goblinDef = getNpc(NpcIds.GOBLIN_1)!;
+const hobgoblinDef = getNpc(NpcIds.HOBGOBLIN)!;
+
 const enemies = [
-  new Enemy({ tileX: 7, tileY: 3, name: "Goblin", hp: 12, attack: 4, xp: 8 }),
-  new Enemy({ tileX: 9, tileY: 5, name: "Goblin", hp: 12, attack: 4, xp: 8 }),
-  new Enemy({ tileX: 6, tileY: 8, name: "Goblin", hp: 12, attack: 4, xp: 8 }),
-  new Enemy({ tileX: 10, tileY: 7, name: "Orc", hp: 20, attack: 6, xp: 15, color: "#c1121f" }),
-  new Enemy({ tileX: 14, tileY: 5, name: "Dark Wizard", hp: 15, attack: 8, xp: 20, color: "#5a189a" }),
+  // Real goblins: combat level 5, hp 12, attack 3, strength 1, defence 4
+  new Enemy({
+    tileX: 7,
+    tileY: 3,
+    npcId: NpcIds.GOBLIN_1,
+    name: goblinDef.name,
+    hp: goblinDef.stats[5], // hitpoints
+    attack: goblinDef.stats[0], // attack
+    strength: goblinDef.stats[1], // strength
+    defence: goblinDef.stats[2], // defence
+    xp: goblinDef.stats[5] * 4, // OSRS: hitpoints * 4 for melee XP
+  }),
+  new Enemy({
+    tileX: 9,
+    tileY: 5,
+    npcId: NpcIds.GOBLIN_2,
+    name: goblinDef.name,
+    hp: goblinDef.stats[5],
+    attack: goblinDef.stats[0],
+    strength: goblinDef.stats[1],
+    defence: goblinDef.stats[2],
+    xp: goblinDef.stats[5] * 4,
+  }),
+  new Enemy({
+    tileX: 6,
+    tileY: 8,
+    npcId: NpcIds.GOBLIN_1,
+    name: goblinDef.name,
+    hp: goblinDef.stats[5],
+    attack: goblinDef.stats[0],
+    strength: goblinDef.stats[1],
+    defence: goblinDef.stats[2],
+    xp: goblinDef.stats[5] * 4,
+  }),
+  // Real hobgoblin: combat level 54, hp 62, attack 45, strength 43, defence 43
+  new Enemy({
+    tileX: 10,
+    tileY: 7,
+    npcId: NpcIds.HOBGOBLIN,
+    name: hobgoblinDef.name,
+    hp: hobgoblinDef.stats[5],
+    attack: hobgoblinDef.stats[0],
+    strength: hobgoblinDef.stats[1],
+    defence: hobgoblinDef.stats[2],
+    xp: hobgoblinDef.stats[5] * 4,
+    color: "#c1121f",
+  }),
 ];
 
 const game = new Game(canvas, {

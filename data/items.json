@@ -1,0 +1,4489 @@
+[
+  {
+    "id": 0,
+    "name": "Dwarf remains",
+    "cost": 1,
+    "stackable": false,
+    "members": true,
+    "examine": "The body of a Dwarf savaged by Goblins.",
+    "tradeable": false
+  },
+  {
+    "id": 1,
+    "name": "Toolkit",
+    "cost": 1,
+    "stackable": false,
+    "members": true,
+    "examine": "Good for repairing broken cannons.",
+    "tradeable": false
+  },
+  {
+    "id": 2,
+    "name": "Steel cannonball",
+    "cost": 5,
+    "stackable": true,
+    "members": true,
+    "examine": "Ammo suited for a boat's cannon or for a dwarf multicannon.",
+    "tradeable": true
+  },
+  {
+    "id": 3,
+    "name": "Nulodion's notes",
+    "cost": 1,
+    "stackable": false,
+    "members": true,
+    "examine": "Construction notes for Dwarf cannon ammo.",
+    "tradeable": false
+  },
+  {
+    "id": 4,
+    "name": "Ammo mould",
+    "cost": 5,
+    "stackable": false,
+    "members": true,
+    "examine": "Used to make cannon ammunition.",
+    "tradeable": false
+  },
+  {
+    "id": 5,
+    "name": "Instruction manual",
+    "cost": 10,
+    "stackable": false,
+    "members": true,
+    "examine": "An old note book.",
+    "tradeable": false
+  },
+  {
+    "id": 6,
+    "name": "Cannon base",
+    "cost": 187500,
+    "stackable": false,
+    "members": true,
+    "examine": "The cannon is built on this.",
+    "tradeable": true
+  },
+  {
+    "id": 7,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 8,
+    "name": "Cannon stand",
+    "cost": 187500,
+    "stackable": false,
+    "members": true,
+    "examine": "The mounting for the multicannon.",
+    "tradeable": true
+  },
+  {
+    "id": 9,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 10,
+    "name": "Cannon barrels",
+    "cost": 187500,
+    "stackable": false,
+    "members": true,
+    "examine": "The barrels of the multicannon.",
+    "tradeable": true
+  },
+  {
+    "id": 11,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 12,
+    "name": "Cannon furnace",
+    "cost": 187500,
+    "stackable": false,
+    "members": true,
+    "examine": "This powers the multicannon.",
+    "tradeable": true
+  },
+  {
+    "id": 13,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 14,
+    "name": "Railing",
+    "cost": 1,
+    "stackable": true,
+    "members": true,
+    "examine": "A metal railing replacement.",
+    "tradeable": false
+  },
+  {
+    "id": 15,
+    "name": "Holy table napkin",
+    "cost": 10,
+    "stackable": false,
+    "members": true,
+    "examine": "A cloth given to me by Sir Galahad.",
+    "tradeable": false
+  },
+  {
+    "id": 16,
+    "name": "Magic whistle",
+    "cost": 10,
+    "stackable": false,
+    "members": true,
+    "examine": "A small tin whistle.",
+    "tradeable": false
+  },
+  {
+    "id": 17,
+    "name": "Grail bell",
+    "cost": 10,
+    "stackable": false,
+    "members": true,
+    "examine": "I wonder what happens when I ring it?",
+    "tradeable": false
+  },
+  {
+    "id": 18,
+    "name": "Magic gold feather",
+    "cost": 2,
+    "stackable": false,
+    "members": true,
+    "examine": "It will point the way for me.",
+    "tradeable": false
+  },
+  {
+    "id": 19,
+    "name": "Holy grail",
+    "cost": 3,
+    "stackable": false,
+    "members": true,
+    "examine": "A holy and powerful artefact.",
+    "tradeable": false
+  },
+  {
+    "id": 20,
+    "name": "White cog",
+    "cost": 1,
+    "stackable": false,
+    "members": true,
+    "examine": "A cog from some machinery.",
+    "tradeable": false
+  },
+  {
+    "id": 21,
+    "name": "Black cog",
+    "cost": 1,
+    "stackable": false,
+    "members": true,
+    "examine": "A cog from some machinery.",
+    "tradeable": false
+  },
+  {
+    "id": 22,
+    "name": "Blue cog",
+    "cost": 1,
+    "stackable": false,
+    "members": true,
+    "examine": "A cog from some machinery.",
+    "tradeable": false
+  },
+  {
+    "id": 23,
+    "name": "Red cog",
+    "cost": 1,
+    "stackable": false,
+    "members": true,
+    "examine": "A cog from some machinery.",
+    "tradeable": false
+  },
+  {
+    "id": 24,
+    "name": "Rat poison",
+    "cost": 1,
+    "stackable": false,
+    "members": true,
+    "examine": "Doesn't look very tasty.",
+    "tradeable": false
+  },
+  {
+    "id": 25,
+    "name": "Red vine worm",
+    "cost": 1,
+    "stackable": true,
+    "members": true,
+    "examine": "Wormy.",
+    "tradeable": false
+  },
+  {
+    "id": 26,
+    "name": "Fishing trophy",
+    "cost": 1,
+    "stackable": false,
+    "members": true,
+    "examine": "Hemenster fishing contest trophy.",
+    "tradeable": false
+  },
+  {
+    "id": 27,
+    "name": "Fishing pass",
+    "cost": 1,
+    "stackable": false,
+    "members": true,
+    "examine": "Pass to the Hemenster fishing contest.",
+    "tradeable": false
+  },
+  {
+    "id": 28,
+    "name": "Insect repellent",
+    "cost": 3,
+    "stackable": false,
+    "members": true,
+    "examine": "Drives away all known 6 legged creatures.",
+    "tradeable": true
+  },
+  {
+    "id": 29,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 30,
+    "name": "Bucket of wax",
+    "cost": 6,
+    "stackable": false,
+    "members": true,
+    "examine": "It's a bucket of wax.",
+    "tradeable": true
+  },
+  {
+    "id": 31,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 32,
+    "name": "Lit black candle",
+    "cost": 3,
+    "stackable": false,
+    "members": true,
+    "examine": "A lit spooky candle.",
+    "tradeable": false
+  },
+  {
+    "id": 33,
+    "name": "Lit candle",
+    "cost": 3,
+    "stackable": false,
+    "members": true,
+    "examine": "A lit candle.",
+    "tradeable": false
+  },
+  {
+    "id": 34,
+    "name": "Null",
+    "cost": 1,
+    "stackable": true,
+    "members": false,
+    "examine": "null",
+    "tradeable": false
+  },
+  {
+    "id": 35,
+    "name": "Excalibur",
+    "cost": 200,
+    "stackable": false,
+    "members": true,
+    "examine": "This used to belong to King Arthur.",
+    "tradeable": false,
+    "equipable": true,
+    "wearPos": "weapon"
+  },
+  {
+    "id": 36,
+    "name": "Candle",
+    "cost": 3,
+    "stackable": false,
+    "members": true,
+    "examine": "A candle.",
+    "tradeable": true
+  },
+  {
+    "id": 37,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 38,
+    "name": "Black candle",
+    "cost": 3,
+    "stackable": false,
+    "members": true,
+    "examine": "A spooky candle.",
+    "tradeable": false
+  },
+  {
+    "id": 39,
+    "name": "Bronze arrowtips",
+    "cost": 1,
+    "stackable": true,
+    "members": true,
+    "examine": "I can make some arrows with these.",
+    "tradeable": true
+  },
+  {
+    "id": 40,
+    "name": "Iron arrowtips",
+    "cost": 2,
+    "stackable": true,
+    "members": true,
+    "examine": "I can make some arrows with these.",
+    "tradeable": true
+  },
+  {
+    "id": 41,
+    "name": "Steel arrowtips",
+    "cost": 6,
+    "stackable": true,
+    "members": true,
+    "examine": "I can make some arrows with these.",
+    "tradeable": true
+  },
+  {
+    "id": 42,
+    "name": "Mithril arrowtips",
+    "cost": 16,
+    "stackable": true,
+    "members": true,
+    "examine": "I can make some arrows with these.",
+    "tradeable": true
+  },
+  {
+    "id": 43,
+    "name": "Adamant arrowtips",
+    "cost": 40,
+    "stackable": true,
+    "members": true,
+    "examine": "I can make some arrows with these.",
+    "tradeable": true
+  },
+  {
+    "id": 44,
+    "name": "Rune arrowtips",
+    "cost": 200,
+    "stackable": true,
+    "members": true,
+    "examine": "I can make some arrows with these.",
+    "tradeable": true
+  },
+  {
+    "id": 45,
+    "name": "Opal bolt tips",
+    "cost": 7,
+    "stackable": true,
+    "members": true,
+    "examine": "Opal bolt tips.",
+    "tradeable": true
+  },
+  {
+    "id": 46,
+    "name": "Pearl bolt tips",
+    "cost": 12,
+    "stackable": true,
+    "members": true,
+    "examine": "Pearl bolt tips.",
+    "tradeable": true
+  },
+  {
+    "id": 47,
+    "name": "Barb bolttips",
+    "cost": 95,
+    "stackable": true,
+    "members": true,
+    "examine": "I can make bolts with these.",
+    "tradeable": true
+  },
+  {
+    "id": 48,
+    "name": "Longbow (u)",
+    "cost": 60,
+    "stackable": false,
+    "members": true,
+    "examine": "I need to find a string for this.",
+    "tradeable": true
+  },
+  {
+    "id": 49,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 50,
+    "name": "Shortbow (u)",
+    "cost": 23,
+    "stackable": false,
+    "members": true,
+    "examine": "I need to find a string for this.",
+    "tradeable": true
+  },
+  {
+    "id": 51,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 52,
+    "name": "Arrow shaft",
+    "cost": 1,
+    "stackable": true,
+    "members": true,
+    "examine": "A wooden arrow shaft.",
+    "tradeable": true
+  },
+  {
+    "id": 53,
+    "name": "Headless arrow",
+    "cost": 1,
+    "stackable": true,
+    "members": true,
+    "examine": "A wooden arrow shaft with flights attached.",
+    "tradeable": true
+  },
+  {
+    "id": 54,
+    "name": "Oak shortbow (u)",
+    "cost": 50,
+    "stackable": false,
+    "members": true,
+    "examine": "An unstrung oak shortbow; I need a bowstring for this.",
+    "tradeable": true
+  },
+  {
+    "id": 55,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 56,
+    "name": "Oak longbow (u)",
+    "cost": 80,
+    "stackable": false,
+    "members": true,
+    "examine": "An unstrung oak longbow; I need a bowstring for this.",
+    "tradeable": true
+  },
+  {
+    "id": 57,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 58,
+    "name": "Willow longbow (u)",
+    "cost": 160,
+    "stackable": false,
+    "members": true,
+    "examine": "An unstrung willow longbow; I need a bowstring for this.",
+    "tradeable": true
+  },
+  {
+    "id": 59,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 60,
+    "name": "Willow shortbow (u)",
+    "cost": 100,
+    "stackable": false,
+    "members": true,
+    "examine": "An unstrung willow shortbow; I need a bowstring for this.",
+    "tradeable": true
+  },
+  {
+    "id": 61,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 62,
+    "name": "Maple longbow (u)",
+    "cost": 320,
+    "stackable": false,
+    "members": true,
+    "examine": "An unstrung maple longbow; I need a bowstring for this.",
+    "tradeable": true
+  },
+  {
+    "id": 63,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 64,
+    "name": "Maple shortbow (u)",
+    "cost": 200,
+    "stackable": false,
+    "members": true,
+    "examine": "An unstrung maple shortbow; I need a bowstring for this.",
+    "tradeable": true
+  },
+  {
+    "id": 65,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 66,
+    "name": "Yew longbow (u)",
+    "cost": 640,
+    "stackable": false,
+    "members": true,
+    "examine": "An unstrung yew longbow; I need a bowstring for this.",
+    "tradeable": true
+  },
+  {
+    "id": 67,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 68,
+    "name": "Yew shortbow (u)",
+    "cost": 400,
+    "stackable": false,
+    "members": true,
+    "examine": "An unstrung yew shortbow; I need a bowstring for this.",
+    "tradeable": true
+  },
+  {
+    "id": 69,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 70,
+    "name": "Magic longbow (u)",
+    "cost": 1280,
+    "stackable": false,
+    "members": true,
+    "examine": "An unstrung magic longbow; I need a bowstring for this.",
+    "tradeable": true
+  },
+  {
+    "id": 71,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 72,
+    "name": "Magic shortbow (u)",
+    "cost": 800,
+    "stackable": false,
+    "members": true,
+    "examine": "An unstrung magic shortbow; I need a bowstring for this.",
+    "tradeable": true
+  },
+  {
+    "id": 73,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 74,
+    "name": "Khazard helmet",
+    "cost": 30,
+    "stackable": false,
+    "members": true,
+    "examine": "A helmet, as worn by the minions of General Khazard.",
+    "tradeable": false,
+    "equipable": true
+  },
+  {
+    "id": 75,
+    "name": "Khazard armour",
+    "cost": 30,
+    "stackable": false,
+    "members": true,
+    "examine": "Armour, as worn by the minions of General Khazard.",
+    "tradeable": false,
+    "equipable": true,
+    "wearPos": "body"
+  },
+  {
+    "id": 76,
+    "name": "Khazard cell keys",
+    "cost": 30,
+    "stackable": false,
+    "members": true,
+    "examine": "These keys open the cells at the Khazard fight arena (Used in the Fight Arena quest).",
+    "tradeable": false
+  },
+  {
+    "id": 77,
+    "name": "Khali brew",
+    "cost": 5,
+    "stackable": false,
+    "members": true,
+    "examine": "A bottle of Khazard's worst brew.",
+    "tradeable": false
+  },
+  {
+    "id": 78,
+    "name": "Ice arrows",
+    "cost": 2,
+    "stackable": true,
+    "members": true,
+    "examine": "Can only be fired from yew, magic, dark or twisted bows.",
+    "tradeable": false,
+    "equipable": true
+  },
+  {
+    "id": 79,
+    "name": "null",
+    "cost": 1,
+    "stackable": true,
+    "members": false,
+    "tradeable": false
+  },
+  {
+    "id": 80,
+    "name": "null",
+    "cost": 1,
+    "stackable": true,
+    "members": false,
+    "tradeable": false
+  },
+  {
+    "id": 81,
+    "name": "null",
+    "cost": 1,
+    "stackable": true,
+    "members": false,
+    "tradeable": false
+  },
+  {
+    "id": 82,
+    "name": "null",
+    "cost": 1,
+    "stackable": true,
+    "members": false,
+    "tradeable": false
+  },
+  {
+    "id": 83,
+    "name": "Lever",
+    "cost": 15,
+    "stackable": false,
+    "members": true,
+    "examine": "A lever to open something perhaps?",
+    "tradeable": false
+  },
+  {
+    "id": 84,
+    "name": "Staff of armadyl",
+    "cost": 1000,
+    "stackable": false,
+    "members": true,
+    "examine": "The power in this staff causes it to vibrate gently.",
+    "tradeable": false,
+    "equipable": true,
+    "wearPos": "weapon"
+  },
+  {
+    "id": 85,
+    "name": "Shiny key",
+    "cost": 1,
+    "stackable": false,
+    "members": true,
+    "examine": "It catches the light! (Quick access into the Temple of Ikov).",
+    "tradeable": false
+  },
+  {
+    "id": 86,
+    "name": "Pendant of lucien",
+    "cost": 12,
+    "stackable": false,
+    "members": true,
+    "examine": "An amulet made by Lucien.",
+    "tradeable": false,
+    "equipable": true
+  },
+  {
+    "id": 87,
+    "name": "Armadyl pendant",
+    "cost": 12,
+    "stackable": false,
+    "members": true,
+    "examine": "Worn by followers of Armadyl.",
+    "tradeable": false,
+    "equipable": true
+  },
+  {
+    "id": 88,
+    "name": "Boots of lightness",
+    "cost": 6,
+    "stackable": false,
+    "members": true,
+    "examine": "Magic boots that make you lighter than normal.",
+    "tradeable": false,
+    "equipable": true,
+    "wearPos": "feet"
+  },
+  {
+    "id": 89,
+    "name": "Boots of lightness",
+    "cost": 6,
+    "stackable": false,
+    "members": true,
+    "examine": "Magic boots that make you lighter than normal.",
+    "tradeable": false,
+    "equipable": true,
+    "wearPos": "feet"
+  },
+  {
+    "id": 90,
+    "name": "Child's blanket",
+    "cost": 5,
+    "stackable": false,
+    "members": true,
+    "examine": "It's very soft!",
+    "tradeable": false
+  },
+  {
+    "id": 91,
+    "name": "Guam potion (unf)",
+    "cost": 3,
+    "stackable": false,
+    "members": true,
+    "examine": "I need another ingredient to finish this Guam potion.",
+    "tradeable": true
+  },
+  {
+    "id": 92,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 93,
+    "name": "Marrentill potion (unf)",
+    "cost": 5,
+    "stackable": false,
+    "members": true,
+    "examine": "I need another ingredient to finish this Marrentill potion.",
+    "tradeable": true
+  },
+  {
+    "id": 94,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 95,
+    "name": "Tarromin potion (unf)",
+    "cost": 11,
+    "stackable": false,
+    "members": true,
+    "examine": "I need another ingredient to finish this Tarromin potion.",
+    "tradeable": true
+  },
+  {
+    "id": 96,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 97,
+    "name": "Harralander potion (unf)",
+    "cost": 20,
+    "stackable": false,
+    "members": true,
+    "examine": "I need another ingredient to finish this Harralander potion.",
+    "tradeable": true
+  },
+  {
+    "id": 98,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 99,
+    "name": "Ranarr potion (unf)",
+    "cost": 25,
+    "stackable": false,
+    "members": true,
+    "examine": "I need another ingredient to finish this Ranarr potion.",
+    "tradeable": true
+  },
+  {
+    "id": 100,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 101,
+    "name": "Irit potion (unf)",
+    "cost": 40,
+    "stackable": false,
+    "members": true,
+    "examine": "I need another ingredient to finish this Irit potion.",
+    "tradeable": true
+  },
+  {
+    "id": 102,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 103,
+    "name": "Avantoe potion (unf)",
+    "cost": 48,
+    "stackable": false,
+    "members": true,
+    "examine": "I need another ingredient to finish this Avantoe potion.",
+    "tradeable": true
+  },
+  {
+    "id": 104,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 105,
+    "name": "Kwuarm potion (unf)",
+    "cost": 54,
+    "stackable": false,
+    "members": true,
+    "examine": "I need another ingredient to finish this Kwuarm potion.",
+    "tradeable": true
+  },
+  {
+    "id": 106,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 107,
+    "name": "Cadantine potion (unf)",
+    "cost": 65,
+    "stackable": false,
+    "members": true,
+    "examine": "I need another ingredient to finish this Cadantine potion.",
+    "tradeable": true
+  },
+  {
+    "id": 108,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 109,
+    "name": "Dwarf weed potion (unf)",
+    "cost": 70,
+    "stackable": false,
+    "members": true,
+    "examine": "I need another ingredient to finish this Dwarf Weed potion.",
+    "tradeable": true
+  },
+  {
+    "id": 110,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 111,
+    "name": "Torstol potion (unf)",
+    "cost": 25,
+    "stackable": false,
+    "members": true,
+    "examine": "I need another ingredient to finish this Torstol potion.",
+    "tradeable": true
+  },
+  {
+    "id": 112,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 113,
+    "name": "Strength potion(4)",
+    "cost": 14,
+    "stackable": false,
+    "members": false,
+    "examine": "4 doses of Strength potion.",
+    "tradeable": true
+  },
+  {
+    "id": 114,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 115,
+    "name": "Strength potion(3)",
+    "cost": 13,
+    "stackable": false,
+    "members": false,
+    "examine": "3 doses of Strength potion.",
+    "tradeable": true
+  },
+  {
+    "id": 116,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 117,
+    "name": "Strength potion(2)",
+    "cost": 13,
+    "stackable": false,
+    "members": false,
+    "examine": "2 doses of Strength potion.",
+    "tradeable": true
+  },
+  {
+    "id": 118,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 119,
+    "name": "Strength potion(1)",
+    "cost": 11,
+    "stackable": false,
+    "members": false,
+    "examine": "1 dose of Strength potion.",
+    "tradeable": true
+  },
+  {
+    "id": 120,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 121,
+    "name": "Attack potion(3)",
+    "cost": 12,
+    "stackable": false,
+    "members": true,
+    "examine": "3 doses of Attack potion.",
+    "tradeable": true
+  },
+  {
+    "id": 122,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 123,
+    "name": "Attack potion(2)",
+    "cost": 9,
+    "stackable": false,
+    "members": true,
+    "examine": "2 doses of Attack potion.",
+    "tradeable": true
+  },
+  {
+    "id": 124,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 125,
+    "name": "Attack potion(1)",
+    "cost": 6,
+    "stackable": false,
+    "members": true,
+    "examine": "1 dose of Attack potion.",
+    "tradeable": true
+  },
+  {
+    "id": 126,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 127,
+    "name": "Restore potion(3)",
+    "cost": 88,
+    "stackable": false,
+    "members": true,
+    "examine": "3 doses of restore potion.",
+    "tradeable": true
+  },
+  {
+    "id": 128,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 129,
+    "name": "Restore potion(2)",
+    "cost": 66,
+    "stackable": false,
+    "members": true,
+    "examine": "2 doses of restore potion.",
+    "tradeable": true
+  },
+  {
+    "id": 130,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 131,
+    "name": "Restore potion(1)",
+    "cost": 44,
+    "stackable": false,
+    "members": true,
+    "examine": "1 dose of restore potion.",
+    "tradeable": true
+  },
+  {
+    "id": 132,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 133,
+    "name": "Defence potion(3)",
+    "cost": 120,
+    "stackable": false,
+    "members": true,
+    "examine": "3 doses of Defence potion.",
+    "tradeable": true
+  },
+  {
+    "id": 134,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 135,
+    "name": "Defence potion(2)",
+    "cost": 90,
+    "stackable": false,
+    "members": true,
+    "examine": "2 doses of Defence potion.",
+    "tradeable": true
+  },
+  {
+    "id": 136,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 137,
+    "name": "Defence potion(1)",
+    "cost": 60,
+    "stackable": false,
+    "members": true,
+    "examine": "1 dose of Defence potion.",
+    "tradeable": true
+  },
+  {
+    "id": 138,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 139,
+    "name": "Prayer potion(3)",
+    "cost": 152,
+    "stackable": false,
+    "members": true,
+    "examine": "3 doses of Prayer restore potion.",
+    "tradeable": true
+  },
+  {
+    "id": 140,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 141,
+    "name": "Prayer potion(2)",
+    "cost": 114,
+    "stackable": false,
+    "members": true,
+    "examine": "2 doses of Prayer restore potion.",
+    "tradeable": true
+  },
+  {
+    "id": 142,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 143,
+    "name": "Prayer potion(1)",
+    "cost": 76,
+    "stackable": false,
+    "members": true,
+    "examine": "1 dose of Prayer restore potion.",
+    "tradeable": true
+  },
+  {
+    "id": 144,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 145,
+    "name": "Super attack(3)",
+    "cost": 180,
+    "stackable": false,
+    "members": true,
+    "examine": "3 doses of super Attack potion.",
+    "tradeable": true
+  },
+  {
+    "id": 146,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 147,
+    "name": "Super attack(2)",
+    "cost": 135,
+    "stackable": false,
+    "members": true,
+    "examine": "2 doses of super Attack potion.",
+    "tradeable": true
+  },
+  {
+    "id": 148,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 149,
+    "name": "Super attack(1)",
+    "cost": 90,
+    "stackable": false,
+    "members": true,
+    "examine": "1 dose of super Attack potion.",
+    "tradeable": true
+  },
+  {
+    "id": 150,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 151,
+    "name": "Fishing potion(3)",
+    "cost": 200,
+    "stackable": false,
+    "members": true,
+    "examine": "3 doses of Fishing potion.",
+    "tradeable": true
+  },
+  {
+    "id": 152,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 153,
+    "name": "Fishing potion(2)",
+    "cost": 150,
+    "stackable": false,
+    "members": true,
+    "examine": "2 doses of Fishing potion.",
+    "tradeable": true
+  },
+  {
+    "id": 154,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 155,
+    "name": "Fishing potion(1)",
+    "cost": 100,
+    "stackable": false,
+    "members": true,
+    "examine": "1 dose of Fishing potion.",
+    "tradeable": true
+  },
+  {
+    "id": 156,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 157,
+    "name": "Super strength(3)",
+    "cost": 220,
+    "stackable": false,
+    "members": true,
+    "examine": "3 doses of super Strength potion.",
+    "tradeable": true
+  },
+  {
+    "id": 158,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 159,
+    "name": "Super strength(2)",
+    "cost": 165,
+    "stackable": false,
+    "members": true,
+    "examine": "2 doses of super Strength potion.",
+    "tradeable": true
+  },
+  {
+    "id": 160,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 161,
+    "name": "Super strength(1)",
+    "cost": 110,
+    "stackable": false,
+    "members": true,
+    "examine": "1 dose of super Strength potion.",
+    "tradeable": true
+  },
+  {
+    "id": 162,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 163,
+    "name": "Super defence(3)",
+    "cost": 264,
+    "stackable": false,
+    "members": true,
+    "examine": "3 doses of super Defence potion.",
+    "tradeable": true
+  },
+  {
+    "id": 164,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 165,
+    "name": "Super defence(2)",
+    "cost": 198,
+    "stackable": false,
+    "members": true,
+    "examine": "2 doses of super Defence potion.",
+    "tradeable": true
+  },
+  {
+    "id": 166,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 167,
+    "name": "Super defence(1)",
+    "cost": 132,
+    "stackable": false,
+    "members": true,
+    "examine": "1 dose of super Defence potion.",
+    "tradeable": true
+  },
+  {
+    "id": 168,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 169,
+    "name": "Ranging potion(3)",
+    "cost": 288,
+    "stackable": false,
+    "members": true,
+    "examine": "3 doses of ranging potion.",
+    "tradeable": true
+  },
+  {
+    "id": 170,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 171,
+    "name": "Ranging potion(2)",
+    "cost": 216,
+    "stackable": false,
+    "members": true,
+    "examine": "2 doses of ranging potion.",
+    "tradeable": true
+  },
+  {
+    "id": 172,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 173,
+    "name": "Ranging potion(1)",
+    "cost": 144,
+    "stackable": false,
+    "members": true,
+    "examine": "1 dose of ranging potion.",
+    "tradeable": true
+  },
+  {
+    "id": 174,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 175,
+    "name": "Antipoison(3)",
+    "cost": 288,
+    "stackable": false,
+    "members": false,
+    "examine": "3 doses of antipoison potion.",
+    "tradeable": true
+  },
+  {
+    "id": 176,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 177,
+    "name": "Antipoison(2)",
+    "cost": 216,
+    "stackable": false,
+    "members": false,
+    "examine": "2 doses of antipoison potion.",
+    "tradeable": true
+  },
+  {
+    "id": 178,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 179,
+    "name": "Antipoison(1)",
+    "cost": 144,
+    "stackable": false,
+    "members": false,
+    "examine": "1 dose of antipoison potion.",
+    "tradeable": true
+  },
+  {
+    "id": 180,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 181,
+    "name": "Superantipoison(3)",
+    "cost": 288,
+    "stackable": false,
+    "members": true,
+    "examine": "3 doses of super antipoison potion.",
+    "tradeable": true
+  },
+  {
+    "id": 182,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 183,
+    "name": "Superantipoison(2)",
+    "cost": 216,
+    "stackable": false,
+    "members": true,
+    "examine": "2 doses of super antipoison potion.",
+    "tradeable": true
+  },
+  {
+    "id": 184,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 185,
+    "name": "Superantipoison(1)",
+    "cost": 144,
+    "stackable": false,
+    "members": true,
+    "examine": "1 dose of super antipoison potion.",
+    "tradeable": true
+  },
+  {
+    "id": 186,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 187,
+    "name": "Weapon poison",
+    "cost": 144,
+    "stackable": false,
+    "members": true,
+    "examine": "For use on daggers and projectiles.",
+    "tradeable": true
+  },
+  {
+    "id": 188,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 189,
+    "name": "Zamorak brew(3)",
+    "cost": 175,
+    "stackable": false,
+    "members": true,
+    "examine": "3 doses of Zamorak brew.",
+    "tradeable": true
+  },
+  {
+    "id": 190,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 191,
+    "name": "Zamorak brew(2)",
+    "cost": 150,
+    "stackable": false,
+    "members": true,
+    "examine": "2 doses of Zamorak brew.",
+    "tradeable": true
+  },
+  {
+    "id": 192,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 193,
+    "name": "Zamorak brew(1)",
+    "cost": 125,
+    "stackable": false,
+    "members": true,
+    "examine": "1 dose of Zamorak brew.",
+    "tradeable": true
+  },
+  {
+    "id": 194,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 195,
+    "name": "Potion",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "examine": "This is meant to be good for spots.",
+    "tradeable": true
+  },
+  {
+    "id": 196,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 197,
+    "name": "Poison chalice",
+    "cost": 20,
+    "stackable": false,
+    "members": true,
+    "examine": "A cup of a strange brew...",
+    "tradeable": true
+  },
+  {
+    "id": 198,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 199,
+    "name": "Grimy guam leaf",
+    "cost": 13,
+    "stackable": false,
+    "members": true,
+    "examine": "It needs cleaning.",
+    "tradeable": true
+  },
+  {
+    "id": 200,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 201,
+    "name": "Grimy marrentill",
+    "cost": 14,
+    "stackable": false,
+    "members": true,
+    "examine": "It needs cleaning.",
+    "tradeable": true
+  },
+  {
+    "id": 202,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 203,
+    "name": "Grimy tarromin",
+    "cost": 15,
+    "stackable": false,
+    "members": true,
+    "examine": "It needs cleaning.",
+    "tradeable": true
+  },
+  {
+    "id": 204,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 205,
+    "name": "Grimy harralander",
+    "cost": 16,
+    "stackable": false,
+    "members": true,
+    "examine": "It needs cleaning.",
+    "tradeable": true
+  },
+  {
+    "id": 206,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 207,
+    "name": "Grimy ranarr weed",
+    "cost": 30,
+    "stackable": false,
+    "members": true,
+    "examine": "It needs cleaning.",
+    "tradeable": true
+  },
+  {
+    "id": 208,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 209,
+    "name": "Grimy irit leaf",
+    "cost": 17,
+    "stackable": false,
+    "members": true,
+    "examine": "It needs cleaning.",
+    "tradeable": true
+  },
+  {
+    "id": 210,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 211,
+    "name": "Grimy avantoe",
+    "cost": 18,
+    "stackable": false,
+    "members": true,
+    "examine": "It needs cleaning.",
+    "tradeable": true
+  },
+  {
+    "id": 212,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 213,
+    "name": "Grimy kwuarm",
+    "cost": 20,
+    "stackable": false,
+    "members": true,
+    "examine": "It needs cleaning.",
+    "tradeable": true
+  },
+  {
+    "id": 214,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 215,
+    "name": "Grimy cadantine",
+    "cost": 22,
+    "stackable": false,
+    "members": true,
+    "examine": "It needs cleaning.",
+    "tradeable": true
+  },
+  {
+    "id": 216,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 217,
+    "name": "Grimy dwarf weed",
+    "cost": 24,
+    "stackable": false,
+    "members": true,
+    "examine": "It needs cleaning.",
+    "tradeable": true
+  },
+  {
+    "id": 218,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 219,
+    "name": "Grimy torstol",
+    "cost": 25,
+    "stackable": false,
+    "members": true,
+    "examine": "It needs cleaning.",
+    "tradeable": true
+  },
+  {
+    "id": 220,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 221,
+    "name": "Eye of newt",
+    "cost": 3,
+    "stackable": false,
+    "members": false,
+    "examine": "It seems to be looking at me.",
+    "tradeable": true
+  },
+  {
+    "id": 222,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 223,
+    "name": "Red spiders' eggs",
+    "cost": 7,
+    "stackable": false,
+    "members": false,
+    "examine": "Ewww!",
+    "tradeable": true
+  },
+  {
+    "id": 224,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 225,
+    "name": "Limpwurt root",
+    "cost": 7,
+    "stackable": false,
+    "members": false,
+    "examine": "The root of a limpwurt plant.",
+    "tradeable": true
+  },
+  {
+    "id": 226,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 227,
+    "name": "Vial of water",
+    "cost": 2,
+    "stackable": false,
+    "members": false,
+    "examine": "A glass vial containing water.",
+    "tradeable": true
+  },
+  {
+    "id": 228,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 229,
+    "name": "Vial",
+    "cost": 2,
+    "stackable": false,
+    "members": false,
+    "examine": "An empty glass vial.",
+    "tradeable": true
+  },
+  {
+    "id": 230,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 231,
+    "name": "Snape grass",
+    "cost": 10,
+    "stackable": false,
+    "members": true,
+    "examine": "Strange spiky grass.",
+    "tradeable": true
+  },
+  {
+    "id": 232,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 233,
+    "name": "Pestle and mortar",
+    "cost": 4,
+    "stackable": false,
+    "members": true,
+    "examine": "I can grind things for potions in this.",
+    "tradeable": true
+  },
+  {
+    "id": 234,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 235,
+    "name": "Unicorn horn dust",
+    "cost": 20,
+    "stackable": false,
+    "members": true,
+    "examine": "Finely ground horn of Unicorn.",
+    "tradeable": true
+  },
+  {
+    "id": 236,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 237,
+    "name": "Unicorn horn",
+    "cost": 20,
+    "stackable": false,
+    "members": true,
+    "examine": "This horn has restorative properties.",
+    "tradeable": true
+  },
+  {
+    "id": 238,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 239,
+    "name": "White berries",
+    "cost": 10,
+    "stackable": false,
+    "members": true,
+    "examine": "Sour berries, used in potions.",
+    "tradeable": true
+  },
+  {
+    "id": 240,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 241,
+    "name": "Dragon scale dust",
+    "cost": 52,
+    "stackable": false,
+    "members": true,
+    "examine": "Finely ground scale of Dragon.",
+    "tradeable": true
+  },
+  {
+    "id": 242,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 243,
+    "name": "Blue dragon scale",
+    "cost": 50,
+    "stackable": false,
+    "members": true,
+    "examine": "A large shiny scale.",
+    "tradeable": true
+  },
+  {
+    "id": 244,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 245,
+    "name": "Wine of zamorak",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "examine": "An evil wine for an evil god.",
+    "tradeable": true
+  },
+  {
+    "id": 246,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 247,
+    "name": "Jangerberries",
+    "cost": 1,
+    "stackable": false,
+    "members": true,
+    "examine": "They don't look very ripe.",
+    "tradeable": true
+  },
+  {
+    "id": 248,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 249,
+    "name": "Guam leaf",
+    "cost": 3,
+    "stackable": false,
+    "members": true,
+    "examine": "A bitter green herb.",
+    "tradeable": true
+  },
+  {
+    "id": 250,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 251,
+    "name": "Marrentill",
+    "cost": 5,
+    "stackable": false,
+    "members": true,
+    "examine": "A herb used in poison cures.",
+    "tradeable": true
+  },
+  {
+    "id": 252,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 253,
+    "name": "Tarromin",
+    "cost": 11,
+    "stackable": false,
+    "members": true,
+    "examine": "A useful herb.",
+    "tradeable": true
+  },
+  {
+    "id": 254,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 255,
+    "name": "Harralander",
+    "cost": 20,
+    "stackable": false,
+    "members": true,
+    "examine": "A useful herb.",
+    "tradeable": true
+  },
+  {
+    "id": 256,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 257,
+    "name": "Ranarr weed",
+    "cost": 25,
+    "stackable": false,
+    "members": true,
+    "examine": "A useful herb.",
+    "tradeable": true
+  },
+  {
+    "id": 258,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 259,
+    "name": "Irit leaf",
+    "cost": 40,
+    "stackable": false,
+    "members": true,
+    "examine": "A useful herb.",
+    "tradeable": true
+  },
+  {
+    "id": 260,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 261,
+    "name": "Avantoe",
+    "cost": 48,
+    "stackable": false,
+    "members": true,
+    "examine": "A useful herb.",
+    "tradeable": true
+  },
+  {
+    "id": 262,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 263,
+    "name": "Kwuarm",
+    "cost": 54,
+    "stackable": false,
+    "members": true,
+    "examine": "A powerful herb.",
+    "tradeable": true
+  },
+  {
+    "id": 264,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 265,
+    "name": "Cadantine",
+    "cost": 65,
+    "stackable": false,
+    "members": true,
+    "examine": "A powerful herb.",
+    "tradeable": true
+  },
+  {
+    "id": 266,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 267,
+    "name": "Dwarf weed",
+    "cost": 70,
+    "stackable": false,
+    "members": true,
+    "examine": "A powerful herb.",
+    "tradeable": true
+  },
+  {
+    "id": 268,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 269,
+    "name": "Torstol",
+    "cost": 75,
+    "stackable": false,
+    "members": true,
+    "examine": "A powerful herb.",
+    "tradeable": true
+  },
+  {
+    "id": 270,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 271,
+    "name": "Pressure gauge",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "examine": "It looks like part of a machine.",
+    "tradeable": false
+  },
+  {
+    "id": 272,
+    "name": "Fish food",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "examine": "Keeps your pet fish strong and healthy.",
+    "tradeable": true,
+    "equipable": true
+  },
+  {
+    "id": 273,
+    "name": "Poison",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "examine": "This stuff looks nasty.",
+    "tradeable": true
+  },
+  {
+    "id": 274,
+    "name": "Poisoned fish food",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "examine": "Doesn't seem very nice to the poor fishes.",
+    "tradeable": false
+  },
+  {
+    "id": 275,
+    "name": "Key",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "examine": "A slightly smelly key (Used in the Ernest the Chicken quest).",
+    "tradeable": false
+  },
+  {
+    "id": 276,
+    "name": "Rubber tube",
+    "cost": 3,
+    "stackable": false,
+    "members": false,
+    "examine": "It's slightly charred.",
+    "tradeable": false
+  },
+  {
+    "id": 277,
+    "name": "Oil can",
+    "cost": 3,
+    "stackable": false,
+    "members": false,
+    "examine": "It's pretty full.",
+    "tradeable": false
+  },
+  {
+    "id": 278,
+    "name": "Cattleprod",
+    "cost": 3,
+    "stackable": false,
+    "members": true,
+    "examine": "A sharp cattleprod.",
+    "tradeable": false,
+    "equipable": true,
+    "wearPos": "weapon"
+  },
+  {
+    "id": 279,
+    "name": "Sheep feed",
+    "cost": 3,
+    "stackable": false,
+    "members": true,
+    "examine": "Councillor Halgrive gave me this to kill some sheep.",
+    "tradeable": false
+  },
+  {
+    "id": 280,
+    "name": "Sheep bones (1)",
+    "cost": 1,
+    "stackable": false,
+    "members": true,
+    "examine": "The suspicious-looking remains of a suspicious-looking sheep.",
+    "tradeable": false
+  },
+  {
+    "id": 281,
+    "name": "Sheep bones (2)",
+    "cost": 1,
+    "stackable": false,
+    "members": true,
+    "examine": "The suspicious-looking remains of a suspicious-looking sheep.",
+    "tradeable": false
+  },
+  {
+    "id": 282,
+    "name": "Sheep bones (3)",
+    "cost": 1,
+    "stackable": false,
+    "members": true,
+    "examine": "The suspicious-looking remains of a suspicious-looking sheep.",
+    "tradeable": false
+  },
+  {
+    "id": 283,
+    "name": "Sheep bones (4)",
+    "cost": 1,
+    "stackable": false,
+    "members": true,
+    "examine": "The suspicious-looking remains of a suspicious-looking sheep.",
+    "tradeable": false
+  },
+  {
+    "id": 284,
+    "name": "Plague jacket",
+    "cost": 50,
+    "stackable": false,
+    "members": true,
+    "examine": "This should protect me from the plague, I hope!",
+    "tradeable": false,
+    "equipable": true,
+    "wearPos": "body"
+  },
+  {
+    "id": 285,
+    "name": "Plague trousers",
+    "cost": 50,
+    "stackable": false,
+    "members": true,
+    "examine": "These should protect me from the plague, I hope!",
+    "tradeable": false,
+    "equipable": true,
+    "wearPos": "legs"
+  },
+  {
+    "id": 286,
+    "name": "Orange goblin mail",
+    "cost": 40,
+    "stackable": false,
+    "members": false,
+    "examine": "Some orange armour designed to fit goblins.",
+    "tradeable": false,
+    "equipable": true,
+    "wearPos": "body"
+  },
+  {
+    "id": 287,
+    "name": "Blue goblin mail",
+    "cost": 40,
+    "stackable": false,
+    "members": false,
+    "examine": "Some blue armour designed to fit goblins.",
+    "tradeable": false,
+    "equipable": true,
+    "wearPos": "body"
+  },
+  {
+    "id": 288,
+    "name": "Goblin mail",
+    "cost": 40,
+    "stackable": false,
+    "members": false,
+    "examine": "Some brown armour designed to fit goblins.",
+    "tradeable": true,
+    "equipable": true,
+    "wearPos": "body"
+  },
+  {
+    "id": 289,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 290,
+    "name": "Research package",
+    "cost": 30,
+    "stackable": false,
+    "members": false,
+    "examine": "This contains some vital research.",
+    "tradeable": false
+  },
+  {
+    "id": 291,
+    "name": "Research notes",
+    "cost": 30,
+    "stackable": false,
+    "members": false,
+    "examine": "They seem to be written in some kind of code.",
+    "tradeable": false
+  },
+  {
+    "id": 292,
+    "name": "Book on baxtorian",
+    "cost": 2,
+    "stackable": false,
+    "members": true,
+    "examine": "A book on elven history in northern Gielinor.",
+    "tradeable": false
+  },
+  {
+    "id": 293,
+    "name": "Key",
+    "cost": 1,
+    "stackable": false,
+    "members": true,
+    "examine": "I found this in a cave beneath the Tree Gnome Village (used in the Waterfall Quest).",
+    "tradeable": false
+  },
+  {
+    "id": 294,
+    "name": "Glarial's pebble",
+    "cost": 1,
+    "stackable": false,
+    "members": true,
+    "examine": "A small pebble with elven inscription.",
+    "tradeable": false
+  },
+  {
+    "id": 295,
+    "name": "Glarial's amulet",
+    "cost": 1,
+    "stackable": false,
+    "members": true,
+    "examine": "A bright green gem set in a necklace.",
+    "tradeable": false,
+    "equipable": true
+  },
+  {
+    "id": 296,
+    "name": "Glarial's urn",
+    "cost": 1,
+    "stackable": false,
+    "members": true,
+    "examine": "An urn containing Glarial's ashes.",
+    "tradeable": false
+  },
+  {
+    "id": 297,
+    "name": "Glarial's urn (empty)",
+    "cost": 1,
+    "stackable": false,
+    "members": true,
+    "examine": "An empty urn made for Glarial's ashes.",
+    "tradeable": false
+  },
+  {
+    "id": 298,
+    "name": "Key",
+    "cost": 1,
+    "stackable": false,
+    "members": true,
+    "examine": "I found this within Baxtorian Falls (used in the Waterfall Quest).",
+    "tradeable": false
+  },
+  {
+    "id": 299,
+    "name": "Mithril seeds",
+    "cost": 200,
+    "stackable": true,
+    "members": true,
+    "examine": "Magical seeds in a mithril case.",
+    "tradeable": true
+  },
+  {
+    "id": 300,
+    "name": "Rat's tail",
+    "cost": 3,
+    "stackable": false,
+    "members": false,
+    "examine": "A bit of rat.",
+    "tradeable": false
+  },
+  {
+    "id": 301,
+    "name": "Lobster pot",
+    "cost": 20,
+    "stackable": false,
+    "members": false,
+    "examine": "Useful for catching lobsters.",
+    "tradeable": true
+  },
+  {
+    "id": 302,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 303,
+    "name": "Small fishing net",
+    "cost": 5,
+    "stackable": false,
+    "members": false,
+    "examine": "Useful for catching small fish.",
+    "tradeable": true
+  },
+  {
+    "id": 304,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 305,
+    "name": "Big fishing net",
+    "cost": 20,
+    "stackable": false,
+    "members": true,
+    "examine": "Useful for catching lots of fish.",
+    "tradeable": true
+  },
+  {
+    "id": 306,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 307,
+    "name": "Fishing rod",
+    "cost": 5,
+    "stackable": false,
+    "members": false,
+    "examine": "Useful for catching sardine or herring.",
+    "tradeable": true
+  },
+  {
+    "id": 308,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 309,
+    "name": "Fly fishing rod",
+    "cost": 5,
+    "stackable": false,
+    "members": false,
+    "examine": "Useful for catching salmon or trout.",
+    "tradeable": true
+  },
+  {
+    "id": 310,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 311,
+    "name": "Harpoon",
+    "cost": 5,
+    "stackable": false,
+    "members": false,
+    "examine": "Useful for catching really big fish.",
+    "tradeable": true
+  },
+  {
+    "id": 312,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 313,
+    "name": "Fishing bait",
+    "cost": 3,
+    "stackable": true,
+    "members": false,
+    "examine": "For use with a fishing rod.",
+    "tradeable": true
+  },
+  {
+    "id": 314,
+    "name": "Feather",
+    "cost": 2,
+    "stackable": true,
+    "members": false,
+    "examine": "Used for fly fishing.",
+    "tradeable": true
+  },
+  {
+    "id": 315,
+    "name": "Shrimps",
+    "cost": 5,
+    "stackable": false,
+    "members": false,
+    "examine": "Some nicely cooked shrimp.",
+    "tradeable": true
+  },
+  {
+    "id": 316,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 317,
+    "name": "Raw shrimps",
+    "cost": 5,
+    "stackable": false,
+    "members": false,
+    "examine": "I should try cooking this.",
+    "tradeable": true
+  },
+  {
+    "id": 318,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 319,
+    "name": "Anchovies",
+    "cost": 15,
+    "stackable": false,
+    "members": false,
+    "examine": "Some nicely cooked anchovies.",
+    "tradeable": true
+  },
+  {
+    "id": 320,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 321,
+    "name": "Raw anchovies",
+    "cost": 15,
+    "stackable": false,
+    "members": false,
+    "examine": "I should try cooking this.",
+    "tradeable": true
+  },
+  {
+    "id": 322,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 323,
+    "name": "Burnt fish",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "examine": "Oops!",
+    "tradeable": true
+  },
+  {
+    "id": 324,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 325,
+    "name": "Sardine",
+    "cost": 10,
+    "stackable": false,
+    "members": false,
+    "examine": "Some nicely cooked sardines.",
+    "tradeable": true
+  },
+  {
+    "id": 326,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 327,
+    "name": "Raw sardine",
+    "cost": 10,
+    "stackable": false,
+    "members": false,
+    "examine": "I should try cooking this.",
+    "tradeable": true
+  },
+  {
+    "id": 328,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 329,
+    "name": "Salmon",
+    "cost": 30,
+    "stackable": false,
+    "members": false,
+    "examine": "Some nicely cooked salmon.",
+    "tradeable": true
+  },
+  {
+    "id": 330,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 331,
+    "name": "Raw salmon",
+    "cost": 30,
+    "stackable": false,
+    "members": false,
+    "examine": "I should try cooking this.",
+    "tradeable": true
+  },
+  {
+    "id": 332,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 333,
+    "name": "Trout",
+    "cost": 10,
+    "stackable": false,
+    "members": false,
+    "examine": "Some nicely cooked trout.",
+    "tradeable": true
+  },
+  {
+    "id": 334,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 335,
+    "name": "Raw trout",
+    "cost": 10,
+    "stackable": false,
+    "members": false,
+    "examine": "I should try cooking this.",
+    "tradeable": true
+  },
+  {
+    "id": 336,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 337,
+    "name": "Giant carp",
+    "cost": 10,
+    "stackable": false,
+    "members": true,
+    "examine": "Some nicely cooked giant carp.",
+    "tradeable": false
+  },
+  {
+    "id": 338,
+    "name": "Raw giant carp",
+    "cost": 10,
+    "stackable": false,
+    "members": true,
+    "examine": "I should try cooking this.",
+    "tradeable": false
+  },
+  {
+    "id": 339,
+    "name": "Cod",
+    "cost": 10,
+    "stackable": false,
+    "members": true,
+    "examine": "Some nicely cooked cod.",
+    "tradeable": true
+  },
+  {
+    "id": 340,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 341,
+    "name": "Raw cod",
+    "cost": 10,
+    "stackable": false,
+    "members": true,
+    "examine": "I should try cooking this.",
+    "tradeable": true
+  },
+  {
+    "id": 342,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 343,
+    "name": "Burnt fish",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "examine": "Oops!",
+    "tradeable": true
+  },
+  {
+    "id": 344,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 345,
+    "name": "Raw herring",
+    "cost": 10,
+    "stackable": false,
+    "members": false,
+    "examine": "I should try cooking this.",
+    "tradeable": true
+  },
+  {
+    "id": 346,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 347,
+    "name": "Herring",
+    "cost": 10,
+    "stackable": false,
+    "members": false,
+    "examine": "Some nicely cooked herring.",
+    "tradeable": true
+  },
+  {
+    "id": 348,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 349,
+    "name": "Raw pike",
+    "cost": 20,
+    "stackable": false,
+    "members": false,
+    "examine": "I should try cooking this.",
+    "tradeable": true
+  },
+  {
+    "id": 350,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 351,
+    "name": "Pike",
+    "cost": 20,
+    "stackable": false,
+    "members": false,
+    "examine": "Some nicely cooked pike.",
+    "tradeable": true
+  },
+  {
+    "id": 352,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 353,
+    "name": "Raw mackerel",
+    "cost": 15,
+    "stackable": false,
+    "members": true,
+    "examine": "I should try cooking this.",
+    "tradeable": true
+  },
+  {
+    "id": 354,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 355,
+    "name": "Mackerel",
+    "cost": 15,
+    "stackable": false,
+    "members": true,
+    "examine": "Some nicely cooked mackerel.",
+    "tradeable": true
+  },
+  {
+    "id": 356,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 357,
+    "name": "Burnt fish",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "examine": "Oops!",
+    "tradeable": true
+  },
+  {
+    "id": 358,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 359,
+    "name": "Raw tuna",
+    "cost": 40,
+    "stackable": false,
+    "members": false,
+    "examine": "I should try cooking this.",
+    "tradeable": true
+  },
+  {
+    "id": 360,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 361,
+    "name": "Tuna",
+    "cost": 40,
+    "stackable": false,
+    "members": false,
+    "examine": "Wow, this is a big fish.",
+    "tradeable": true
+  },
+  {
+    "id": 362,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 363,
+    "name": "Raw bass",
+    "cost": 40,
+    "stackable": false,
+    "members": true,
+    "examine": "I should try cooking this.",
+    "tradeable": true
+  },
+  {
+    "id": 364,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 365,
+    "name": "Bass",
+    "cost": 40,
+    "stackable": false,
+    "members": true,
+    "examine": "Wow, this is a big fish.",
+    "tradeable": true
+  },
+  {
+    "id": 366,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 367,
+    "name": "Burnt fish",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "examine": "Oops!",
+    "tradeable": true
+  },
+  {
+    "id": 368,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 369,
+    "name": "Burnt fish",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "examine": "Oops!",
+    "tradeable": true
+  },
+  {
+    "id": 370,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 371,
+    "name": "Raw swordfish",
+    "cost": 80,
+    "stackable": false,
+    "members": false,
+    "examine": "I should try cooking this.",
+    "tradeable": true
+  },
+  {
+    "id": 372,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 373,
+    "name": "Swordfish",
+    "cost": 80,
+    "stackable": false,
+    "members": false,
+    "examine": "I'd better be careful eating this!",
+    "tradeable": true
+  },
+  {
+    "id": 374,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 375,
+    "name": "Burnt swordfish",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "examine": "Oops!",
+    "tradeable": true
+  },
+  {
+    "id": 376,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 377,
+    "name": "Raw lobster",
+    "cost": 70,
+    "stackable": false,
+    "members": false,
+    "examine": "I should try cooking this.",
+    "tradeable": true
+  },
+  {
+    "id": 378,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 379,
+    "name": "Lobster",
+    "cost": 70,
+    "stackable": false,
+    "members": false,
+    "examine": "This looks tricky to eat.",
+    "tradeable": true
+  },
+  {
+    "id": 380,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 381,
+    "name": "Burnt lobster",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "examine": "Oops!",
+    "tradeable": true
+  },
+  {
+    "id": 382,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 383,
+    "name": "Raw shark",
+    "cost": 170,
+    "stackable": false,
+    "members": true,
+    "examine": "I should try cooking this.",
+    "tradeable": true
+  },
+  {
+    "id": 384,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 385,
+    "name": "Shark",
+    "cost": 170,
+    "stackable": false,
+    "members": true,
+    "examine": "I'd better be careful eating this.",
+    "tradeable": true
+  },
+  {
+    "id": 386,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 387,
+    "name": "Burnt shark",
+    "cost": 1,
+    "stackable": false,
+    "members": true,
+    "examine": "Oops!",
+    "tradeable": true
+  },
+  {
+    "id": 388,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 389,
+    "name": "Raw manta ray",
+    "cost": 200,
+    "stackable": false,
+    "members": true,
+    "examine": "A rare catch.",
+    "tradeable": true
+  },
+  {
+    "id": 390,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 391,
+    "name": "Manta ray",
+    "cost": 200,
+    "stackable": false,
+    "members": true,
+    "examine": "A rare catch.",
+    "tradeable": true
+  },
+  {
+    "id": 392,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 393,
+    "name": "Burnt manta ray",
+    "cost": 1,
+    "stackable": false,
+    "members": true,
+    "examine": "Oops!",
+    "tradeable": true
+  },
+  {
+    "id": 394,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 395,
+    "name": "Raw sea turtle",
+    "cost": 200,
+    "stackable": false,
+    "members": true,
+    "examine": "A rare catch.",
+    "tradeable": true
+  },
+  {
+    "id": 396,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 397,
+    "name": "Sea turtle",
+    "cost": 200,
+    "stackable": false,
+    "members": true,
+    "examine": "Tasty!",
+    "tradeable": true
+  },
+  {
+    "id": 398,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 399,
+    "name": "Burnt sea turtle",
+    "cost": 1,
+    "stackable": false,
+    "members": true,
+    "examine": "Oops!",
+    "tradeable": true
+  },
+  {
+    "id": 400,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 401,
+    "name": "Seaweed",
+    "cost": 2,
+    "stackable": false,
+    "members": true,
+    "examine": "Slightly damp seaweed.",
+    "tradeable": true
+  },
+  {
+    "id": 402,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 403,
+    "name": "Edible seaweed",
+    "cost": 2,
+    "stackable": false,
+    "members": true,
+    "examine": "Slightly damp seaweed.",
+    "tradeable": true
+  },
+  {
+    "id": 404,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 405,
+    "name": "Casket",
+    "cost": 50,
+    "stackable": false,
+    "members": true,
+    "examine": "I hope there's treasure in it.",
+    "tradeable": true
+  },
+  {
+    "id": 406,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 407,
+    "name": "Oyster",
+    "cost": 200,
+    "stackable": false,
+    "members": true,
+    "examine": "Maybe there are pearls inside?",
+    "tradeable": true
+  },
+  {
+    "id": 408,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 409,
+    "name": "Empty oyster",
+    "cost": 5,
+    "stackable": false,
+    "members": true,
+    "examine": "Aww, it's empty.",
+    "tradeable": true
+  },
+  {
+    "id": 410,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 411,
+    "name": "Oyster pearl",
+    "cost": 112,
+    "stackable": false,
+    "members": true,
+    "examine": "I could work wonders with a chisel on this pearl.",
+    "tradeable": true,
+    "equipable": true
+  },
+  {
+    "id": 412,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 413,
+    "name": "Oyster pearls",
+    "cost": 1400,
+    "stackable": false,
+    "members": true,
+    "examine": "I could work wonders with a chisel on these pearls.",
+    "tradeable": true,
+    "equipable": true
+  },
+  {
+    "id": 414,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 415,
+    "name": "Ethenea",
+    "cost": 10,
+    "stackable": false,
+    "members": true,
+    "examine": "An expensive colourless liquid.",
+    "tradeable": false
+  },
+  {
+    "id": 416,
+    "name": "Liquid honey",
+    "cost": 1,
+    "stackable": false,
+    "members": true,
+    "examine": "This isn't worth much.",
+    "tradeable": false
+  },
+  {
+    "id": 417,
+    "name": "Sulphuric broline",
+    "cost": 1,
+    "stackable": false,
+    "members": true,
+    "examine": "It's highly poisonous.",
+    "tradeable": false
+  },
+  {
+    "id": 418,
+    "name": "Plague sample",
+    "cost": 1,
+    "stackable": false,
+    "members": true,
+    "examine": "Probably best I don't keep this too long.",
+    "tradeable": false
+  },
+  {
+    "id": 419,
+    "name": "Touch paper",
+    "cost": 1,
+    "stackable": false,
+    "members": true,
+    "examine": "A special kind of paper.",
+    "tradeable": false
+  },
+  {
+    "id": 420,
+    "name": "Distillator",
+    "cost": 1,
+    "stackable": false,
+    "members": true,
+    "examine": "Apparently it distills.",
+    "tradeable": false
+  },
+  {
+    "id": 421,
+    "name": "Lathas' amulet",
+    "cost": 10,
+    "stackable": false,
+    "members": true,
+    "examine": "Yup. It's an amulet.",
+    "tradeable": false,
+    "equipable": true
+  },
+  {
+    "id": 422,
+    "name": "Bird feed",
+    "cost": 1,
+    "stackable": false,
+    "members": true,
+    "examine": "Birds love this stuff!",
+    "tradeable": false
+  },
+  {
+    "id": 423,
+    "name": "Key",
+    "cost": 1,
+    "stackable": false,
+    "members": true,
+    "examine": "Opens things (Used in the Biohazard quest).",
+    "tradeable": false
+  },
+  {
+    "id": 424,
+    "name": "Pigeon cage",
+    "cost": 1,
+    "stackable": false,
+    "members": true,
+    "examine": "It's full of pigeons.",
+    "tradeable": false
+  },
+  {
+    "id": 425,
+    "name": "Pigeon cage",
+    "cost": 1,
+    "stackable": false,
+    "members": true,
+    "examine": "It's empty...",
+    "tradeable": false
+  },
+  {
+    "id": 426,
+    "name": "Priest gown",
+    "cost": 5,
+    "stackable": false,
+    "members": false,
+    "examine": "Top half of a priest suit.",
+    "tradeable": true,
+    "equipable": true,
+    "wearPos": "body"
+  },
+  {
+    "id": 427,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 428,
+    "name": "Priest gown",
+    "cost": 5,
+    "stackable": false,
+    "members": false,
+    "examine": "Bottom half of a priest suit.",
+    "tradeable": true,
+    "equipable": true,
+    "wearPos": "legs"
+  },
+  {
+    "id": 429,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 430,
+    "name": "Medical gown",
+    "cost": 40,
+    "stackable": false,
+    "members": true,
+    "examine": "Medical looking.",
+    "tradeable": false,
+    "equipable": true,
+    "wearPos": "body"
+  },
+  {
+    "id": 431,
+    "name": "Karamjan rum",
+    "cost": 30,
+    "stackable": false,
+    "members": false,
+    "examine": "A very strong spirit brewed on Karamja.",
+    "tradeable": false
+  },
+  {
+    "id": 432,
+    "name": "Chest key",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "examine": "A key to One-Eyed Hector's chest (Used in the Pirate's Treasure quest).",
+    "tradeable": false
+  },
+  {
+    "id": 433,
+    "name": "Pirate message",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "examine": "Pirates don't have the best handwriting...",
+    "tradeable": false
+  },
+  {
+    "id": 434,
+    "name": "Clay",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "examine": "Some hard dry clay.",
+    "tradeable": true
+  },
+  {
+    "id": 435,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 436,
+    "name": "Copper ore",
+    "cost": 3,
+    "stackable": false,
+    "members": false,
+    "examine": "This needs refining.",
+    "tradeable": true
+  },
+  {
+    "id": 437,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 438,
+    "name": "Tin ore",
+    "cost": 3,
+    "stackable": false,
+    "members": false,
+    "examine": "This needs refining.",
+    "tradeable": true
+  },
+  {
+    "id": 439,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 440,
+    "name": "Iron ore",
+    "cost": 17,
+    "stackable": false,
+    "members": false,
+    "examine": "This needs refining.",
+    "tradeable": true
+  },
+  {
+    "id": 441,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 442,
+    "name": "Silver ore",
+    "cost": 75,
+    "stackable": false,
+    "members": false,
+    "examine": "This needs refining.",
+    "tradeable": true
+  },
+  {
+    "id": 443,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 444,
+    "name": "Gold ore",
+    "cost": 150,
+    "stackable": false,
+    "members": false,
+    "examine": "This needs refining.",
+    "tradeable": true
+  },
+  {
+    "id": 445,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 446,
+    "name": "'perfect' gold ore",
+    "cost": 150,
+    "stackable": false,
+    "members": true,
+    "examine": "This needs refining.",
+    "tradeable": false
+  },
+  {
+    "id": 447,
+    "name": "Mithril ore",
+    "cost": 162,
+    "stackable": false,
+    "members": false,
+    "examine": "This needs refining.",
+    "tradeable": true
+  },
+  {
+    "id": 448,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 449,
+    "name": "Adamantite ore",
+    "cost": 400,
+    "stackable": false,
+    "members": false,
+    "examine": "This needs refining.",
+    "tradeable": true
+  },
+  {
+    "id": 450,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 451,
+    "name": "Runite ore",
+    "cost": 3200,
+    "stackable": false,
+    "members": false,
+    "examine": "This needs refining.",
+    "tradeable": true
+  },
+  {
+    "id": 452,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 453,
+    "name": "Coal",
+    "cost": 45,
+    "stackable": false,
+    "members": false,
+    "examine": "Hmm a non-renewable energy source!",
+    "tradeable": true
+  },
+  {
+    "id": 454,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 455,
+    "name": "Barcrawl card",
+    "cost": 10,
+    "stackable": false,
+    "members": true,
+    "examine": "The official Alfred Grimhand bar crawl card.",
+    "tradeable": false
+  },
+  {
+    "id": 456,
+    "name": "Scorpion cage",
+    "cost": 10,
+    "stackable": false,
+    "members": true,
+    "examine": "It's empty!",
+    "tradeable": false
+  },
+  {
+    "id": 457,
+    "name": "Scorpion cage",
+    "cost": 10,
+    "stackable": false,
+    "members": true,
+    "examine": "There is 1 scorpion inside.",
+    "tradeable": false
+  },
+  {
+    "id": 458,
+    "name": "Scorpion cage",
+    "cost": 10,
+    "stackable": false,
+    "members": true,
+    "examine": "There are 2 scorpions inside.",
+    "tradeable": false
+  },
+  {
+    "id": 459,
+    "name": "Scorpion cage",
+    "cost": 10,
+    "stackable": false,
+    "members": true,
+    "examine": "There are 2 scorpions inside.",
+    "tradeable": false
+  },
+  {
+    "id": 460,
+    "name": "Scorpion cage",
+    "cost": 10,
+    "stackable": false,
+    "members": true,
+    "examine": "There is 1 scorpion inside.",
+    "tradeable": false
+  },
+  {
+    "id": 461,
+    "name": "Scorpion cage",
+    "cost": 10,
+    "stackable": false,
+    "members": true,
+    "examine": "There are 2 scorpions inside.",
+    "tradeable": false
+  },
+  {
+    "id": 462,
+    "name": "Scorpion cage",
+    "cost": 10,
+    "stackable": false,
+    "members": true,
+    "examine": "There is 1 scorpion inside.",
+    "tradeable": false
+  },
+  {
+    "id": 463,
+    "name": "Scorpion cage",
+    "cost": 10,
+    "stackable": false,
+    "members": true,
+    "examine": "There are 3 scorpions inside.",
+    "tradeable": false
+  },
+  {
+    "id": 464,
+    "name": "Strange fruit",
+    "cost": 1,
+    "stackable": false,
+    "members": true,
+    "examine": "I wonder what this tastes like?",
+    "tradeable": true
+  },
+  {
+    "id": 465,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 466,
+    "name": "Pickaxe handle",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "examine": "Useless without the head.",
+    "tradeable": true,
+    "equipable": true,
+    "wearPos": "weapon"
+  },
+  {
+    "id": 467,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 468,
+    "name": "Broken pickaxe",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "examine": "Nurmof can fix this for me.",
+    "tradeable": true,
+    "equipable": true,
+    "wearPos": "weapon"
+  },
+  {
+    "id": 469,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 470,
+    "name": "Broken pickaxe",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "examine": "Nurmof can fix this for me.",
+    "tradeable": true,
+    "equipable": true,
+    "wearPos": "weapon"
+  },
+  {
+    "id": 471,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 472,
+    "name": "Broken pickaxe",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "examine": "Nurmof can fix this for me.",
+    "tradeable": true,
+    "equipable": true,
+    "wearPos": "weapon"
+  },
+  {
+    "id": 473,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 474,
+    "name": "Broken pickaxe",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "examine": "Nurmof can fix this for me.",
+    "tradeable": true,
+    "equipable": true,
+    "wearPos": "weapon"
+  },
+  {
+    "id": 475,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 476,
+    "name": "Broken pickaxe",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "examine": "Nurmof can fix this for me.",
+    "tradeable": true,
+    "equipable": true,
+    "wearPos": "weapon"
+  },
+  {
+    "id": 477,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 478,
+    "name": "Broken pickaxe",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "examine": "Nurmof can fix this for me.",
+    "tradeable": true,
+    "equipable": true,
+    "wearPos": "weapon"
+  },
+  {
+    "id": 479,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 480,
+    "name": "Bronze pick head",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "examine": "It's missing a handle.",
+    "tradeable": true
+  },
+  {
+    "id": 481,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 482,
+    "name": "Iron pick head",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "examine": "It's missing a handle.",
+    "tradeable": true
+  },
+  {
+    "id": 483,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 484,
+    "name": "Steel pick head",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "examine": "It's missing a handle.",
+    "tradeable": true
+  },
+  {
+    "id": 485,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 486,
+    "name": "Mithril pick head",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "examine": "It's missing a handle.",
+    "tradeable": true
+  },
+  {
+    "id": 487,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 488,
+    "name": "Adamant pick head",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "examine": "It's missing a handle.",
+    "tradeable": true
+  },
+  {
+    "id": 489,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 490,
+    "name": "Rune pick head",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "examine": "It's missing a handle.",
+    "tradeable": true
+  },
+  {
+    "id": 491,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 492,
+    "name": "Axe handle",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "examine": "Useless without the head.",
+    "tradeable": true,
+    "equipable": true,
+    "wearPos": "weapon"
+  },
+  {
+    "id": 493,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 494,
+    "name": "Broken axe",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "examine": "Bob can fix this for me.",
+    "tradeable": true,
+    "equipable": true,
+    "wearPos": "weapon"
+  },
+  {
+    "id": 495,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 496,
+    "name": "Broken axe",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "examine": "Bob can fix this for me.",
+    "tradeable": true,
+    "equipable": true,
+    "wearPos": "weapon"
+  },
+  {
+    "id": 497,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 498,
+    "name": "Broken axe",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "examine": "Bob can fix this for me.",
+    "tradeable": true,
+    "equipable": true,
+    "wearPos": "weapon"
+  },
+  {
+    "id": 499,
+    "name": "null",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "tradeable": true
+  },
+  {
+    "id": 995,
+    "name": "Coins",
+    "cost": 1,
+    "stackable": true,
+    "members": false,
+    "examine": "Lovely money!",
+    "tradeable": true
+  },
+  {
+    "id": 1067,
+    "name": "Iron platelegs",
+    "cost": 280,
+    "stackable": false,
+    "members": false,
+    "examine": "These look pretty heavy.",
+    "tradeable": true,
+    "equipable": true,
+    "wearPos": "legs"
+  },
+  {
+    "id": 1117,
+    "name": "Bronze platebody",
+    "cost": 160,
+    "stackable": false,
+    "members": false,
+    "examine": "Provides excellent protection.",
+    "tradeable": true,
+    "equipable": true,
+    "wearPos": "body"
+  },
+  {
+    "id": 1119,
+    "name": "Steel platebody",
+    "cost": 2000,
+    "stackable": false,
+    "members": false,
+    "examine": "Provides excellent protection.",
+    "tradeable": true,
+    "equipable": true,
+    "wearPos": "body"
+  },
+  {
+    "id": 1121,
+    "name": "Mithril platebody",
+    "cost": 5200,
+    "stackable": false,
+    "members": false,
+    "examine": "Provides excellent protection.",
+    "tradeable": true,
+    "equipable": true,
+    "wearPos": "body"
+  },
+  {
+    "id": 1153,
+    "name": "Iron full helm",
+    "cost": 154,
+    "stackable": false,
+    "members": false,
+    "examine": "A full face helmet.",
+    "tradeable": true,
+    "equipable": true
+  },
+  {
+    "id": 1265,
+    "name": "Bronze pickaxe",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "examine": "Used for mining.",
+    "tradeable": true,
+    "equipable": true,
+    "wearPos": "weapon"
+  },
+  {
+    "id": 1277,
+    "name": "Bronze sword",
+    "cost": 26,
+    "stackable": false,
+    "members": false,
+    "examine": "A razor sharp sword.",
+    "tradeable": true,
+    "equipable": true,
+    "wearPos": "weapon"
+  },
+  {
+    "id": 1279,
+    "name": "Iron sword",
+    "cost": 91,
+    "stackable": false,
+    "members": false,
+    "examine": "A razor sharp sword.",
+    "tradeable": true,
+    "equipable": true,
+    "wearPos": "weapon"
+  },
+  {
+    "id": 1281,
+    "name": "Steel sword",
+    "cost": 325,
+    "stackable": false,
+    "members": false,
+    "examine": "A razor sharp sword.",
+    "tradeable": true,
+    "equipable": true,
+    "wearPos": "weapon"
+  },
+  {
+    "id": 1351,
+    "name": "Bronze axe",
+    "cost": 16,
+    "stackable": false,
+    "members": false,
+    "examine": "A woodcutter's axe.",
+    "tradeable": true,
+    "equipable": true,
+    "wearPos": "weapon"
+  },
+  {
+    "id": 2347,
+    "name": "Hammer",
+    "cost": 1,
+    "stackable": false,
+    "members": false,
+    "examine": "Good for hitting things!",
+    "tradeable": true
+  }
+]

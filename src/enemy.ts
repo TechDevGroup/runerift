@@ -3,10 +3,13 @@ import type { BarStat } from "./stats.ts";
 export interface EnemyOptions {
   tileX: number;
   tileY: number;
+  npcId?: number; // Real OSRS NPC ID from cache
   name: string;
   hp?: number;
   maxHp?: number;
   attack?: number;
+  strength?: number; // Real OSRS strength stat
+  defence?: number;  // Real OSRS defence stat
   xp?: number;
   color?: string;
   aggroRange?: number;
@@ -20,9 +23,12 @@ export interface EnemyOptions {
 export class Enemy {
   tileX: number;
   tileY: number;
+  readonly npcId?: number;
   readonly name: string;
   readonly hp: BarStat;
   readonly attack: number;
+  readonly strength: number;
+  readonly defence: number;
   readonly xp: number;
   readonly color: string;
   readonly aggroRange: number;
@@ -32,9 +38,12 @@ export class Enemy {
   constructor(opts: EnemyOptions) {
     this.tileX = opts.tileX;
     this.tileY = opts.tileY;
+    this.npcId = opts.npcId;
     this.name = opts.name;
-    this.hp = { current: opts.hp ?? 12, max: opts.maxHp ?? 12 };
+    this.hp = { current: opts.hp ?? 12, max: opts.maxHp ?? (opts.hp ?? 12) };
     this.attack = opts.attack ?? 4;
+    this.strength = opts.strength ?? 1;
+    this.defence = opts.defence ?? 1;
     this.xp = opts.xp ?? 5;
     this.color = opts.color ?? "#9b5de5";
     this.aggroRange = opts.aggroRange ?? 5;
