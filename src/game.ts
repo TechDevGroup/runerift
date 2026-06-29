@@ -196,9 +196,20 @@ export class Game {
       return;
     }
 
-    // hotbar skill usage outside of UI: 1-4
+    // hotbar 1-4: consume food from inventory slot or use skill
     for (let i = 1; i <= 4; i++) {
       if (this.input.wasPressed(String(i))) {
+        // Try consuming food from inventory slot first
+        const itemId = this.player.inventory.getItemIdAtSlot(i - 1);
+        if (itemId !== undefined) {
+          const healValue = this.player.inventory.consume(itemId);
+          if (healValue !== undefined) {
+            this.player.heal(healValue);
+            break;
+          }
+        }
+        
+        // Otherwise try using hotbar skill
         const skill = this.player.skills.getHotbarSkill(i - 1);
         if (skill) {
           this.player.skills.useSkill(skill.id, this.player);

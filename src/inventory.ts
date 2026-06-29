@@ -1,5 +1,5 @@
 import type { ItemDefinition } from "./data/ItemDefinition.ts";
-import { getEquipmentStats } from "./data/ItemDefinition.ts";
+import { getEquipmentStats, getFoodHealValue, isFood } from "./data/ItemDefinition.ts";
 
 /**
  * Inventory slot: real OSRS item + quantity.
@@ -115,5 +115,31 @@ export class Inventory {
       }
     }
     return bonus;
+  }
+
+  /**
+   * Consume a food item from inventory.
+   * Returns heal value if item is food and was consumed, undefined otherwise.
+   */
+  consume(itemId: number): number | undefined {
+    const slot = this.items.get(itemId);
+    if (!slot || !isFood(itemId)) {
+      return undefined;
+    }
+
+    const healValue = getFoodHealValue(itemId);
+    this.remove(itemId, 1);
+    return healValue;
+  }
+
+  /**
+   * Get item ID at inventory slot index (0-based).
+   */
+  getItemIdAtSlot(slotIndex: number): number | undefined {
+    const items = Array.from(this.items.values());
+    if (slotIndex < 0 || slotIndex >= items.length) {
+      return undefined;
+    }
+    return items[slotIndex].item.id;
   }
 }

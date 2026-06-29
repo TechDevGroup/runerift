@@ -61,6 +61,32 @@ export function getEquipmentStats(itemId: number): EquipmentStats | undefined {
 }
 
 /**
+ * Real OSRS food healing values.
+ * Source: OSRS Wiki food healing tables.
+ */
+const FOOD_HEAL_VALUES = new Map<number, number>([
+  [315, 3],   // Shrimp
+  [333, 7],   // Trout
+  [329, 9],   // Salmon
+  [379, 12],  // Lobster
+  [385, 20],  // Shark
+]);
+
+/**
+ * Get HP healing value for food item.
+ */
+export function getFoodHealValue(itemId: number): number | undefined {
+  return FOOD_HEAL_VALUES.get(itemId);
+}
+
+/**
+ * Check if item is consumable food.
+ */
+export function isFood(itemId: number): boolean {
+  return FOOD_HEAL_VALUES.has(itemId);
+}
+
+/**
  * Load all items from parsed cache.
  */
 import itemsData from "../../data/items.json";

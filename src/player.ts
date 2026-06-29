@@ -83,6 +83,10 @@ export class Player implements StatsSource {
     this.hp.current = Math.max(0, this.hp.current - amount);
   }
 
+  heal(amount: number): void {
+    this.hp.current = Math.min(this.hp.max, this.hp.current + amount);
+  }
+
   /**
    * Calculate total attack bonus from equipped items.
    */
